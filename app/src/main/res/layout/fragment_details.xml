@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.DetailsFragment">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.015" />
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_details"
+        android:layout_width="198dp"
+        android:layout_height="290dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_details"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_details"
+        app:layout_constraintVertical_bias="0.04">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description_details"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:textSize="20sp" />
+    </ScrollView>
+
+
+    <TextClock
+        android:id="@+id/time_details"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="480dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
