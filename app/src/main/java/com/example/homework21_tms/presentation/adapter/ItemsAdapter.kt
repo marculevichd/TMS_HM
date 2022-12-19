@@ -19,7 +19,6 @@ class ItemsAdapter(private val itemsListener: ItemListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val viewBinding = ItemFilmBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//            LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false)
 
         return ItemsViewHolder(viewBinding, itemsListener)
     }

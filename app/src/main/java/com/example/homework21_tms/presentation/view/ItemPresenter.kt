@@ -2,8 +2,9 @@ package com.example.homework21_tms.presentation.view
 
 import com.example.homework21_tms.R
 import com.example.homework21_tms.domain.ItemInteractor
+import javax.inject.Inject
 
-class ItemPresenter(
+class ItemPresenter @Inject constructor(
     val itemsView: ItemsView,
     val itemInteractor: ItemInteractor
 ) {

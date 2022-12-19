@@ -14,6 +14,7 @@ import com.example.homework21_tms.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemListener, ItemsView {
@@ -23,6 +24,7 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
 
 
     private lateinit var itemsAdapter: ItemsAdapter
+
     lateinit var itemsPresenter: ItemPresenter
 
 
