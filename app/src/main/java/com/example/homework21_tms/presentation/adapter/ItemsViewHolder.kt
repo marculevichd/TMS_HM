@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.ItemFilmBinding
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
-import com.example.homework21_tms.model.ItemsModel
+import com.example.homework21_tms.domain.model.ItemsModel
 
 class ItemsViewHolder(
     private val viewBinding: ItemFilmBinding,

@@ -1,4 +1,4 @@
-package com.example.homework21_tms.model
+package com.example.homework21_tms.domain.model
 
 data class ItemsModel(
     val title: String,

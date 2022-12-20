@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework21_tms.R
 import com.example.homework21_tms.data.ItemRepositoryImpl
 import com.example.homework21_tms.databinding.FragmentItemsBinding
 import com.example.homework21_tms.domain.ItemInteractor
-import com.example.homework21_tms.model.ItemsModel
+import com.example.homework21_tms.domain.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,16 +23,16 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
+    lateinit var itemsAdapter: ItemsAdapter
 
-    private lateinit var itemsAdapter: ItemsAdapter
-
+    @Inject
     lateinit var itemsPresenter: ItemPresenter
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _viewBinding = FragmentItemsBinding.inflate(inflater)
         return viewBinding.root
@@ -41,14 +42,14 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemsPresenter = ItemPresenter(this, ItemInteractor(ItemRepositoryImpl()))
+        itemsPresenter.setView(this)
 
         itemsAdapter = ItemsAdapter(this)
 
 
         viewBinding.recyclerView.adapter = itemsAdapter
+        viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // надо передать лист
         itemsPresenter.getData()
 
     }
@@ -56,7 +57,6 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
 
     override fun onClick() {
         itemsPresenter.imageViewClicked()
-//        Toast.makeText(context, "click", Toast.LENGTH_SHORT).show()
     }
 
     override fun onElementSelected(

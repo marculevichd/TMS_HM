@@ -1,8 +1,7 @@
 package com.example.homework21_tms.di
 
-import com.example.homework21_tms.data.ItemRepositoryImpl
 import com.example.homework21_tms.domain.ItemInteractor
-import com.example.homework21_tms.domain.ItemRepository
+import com.example.homework21_tms.presentation.view.ItemPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,11 +10,11 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DomainModule {
+class PresentationModule {
 
     @Provides
-    fun provideItemInteractor (itemRepository: ItemRepository): ItemInteractor {
-        return ItemInteractor(itemRepository)
+    fun provideItemsPresenter(itemInteractor: ItemInteractor): ItemPresenter {
+        return ItemPresenter(itemInteractor)
     }
 
 }

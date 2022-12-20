@@ -1,6 +1,6 @@
 package com.example.homework21_tms.domain
 
-import com.example.homework21_tms.model.ItemsModel
+import com.example.homework21_tms.domain.model.ItemsModel
 
 interface ItemRepository {
 

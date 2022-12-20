@@ -5,9 +5,15 @@ import com.example.homework21_tms.domain.ItemInteractor
 import javax.inject.Inject
 
 class ItemPresenter @Inject constructor(
-    val itemsView: ItemsView,
     val itemInteractor: ItemInteractor
 ) {
+
+    private lateinit var itemsView: ItemsView // убрали из конструктора и добавли метод set
+
+    fun setView(context:ItemsView){
+        itemsView = context
+    }
+
 
     fun getData() {
         val listItems = itemInteractor.getData()
