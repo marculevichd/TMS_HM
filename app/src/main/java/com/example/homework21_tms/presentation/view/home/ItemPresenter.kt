@@ -1,7 +1,8 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.home
 
 import com.example.homework21_tms.R
 import com.example.homework21_tms.domain.ItemInteractor
+import com.example.homework21_tms.presentation.view.home.ItemsView
 import javax.inject.Inject
 
 class ItemPresenter @Inject constructor(
@@ -10,7 +11,7 @@ class ItemPresenter @Inject constructor(
 
     private lateinit var itemsView: ItemsView // убрали из конструктора и добавли метод set
 
-    fun setView(context:ItemsView){
+    fun setView(context: ItemsView){
         itemsView = context
     }
 

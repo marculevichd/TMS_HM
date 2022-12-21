@@ -4,41 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.auth.OnBordingFragment">
+    tools:context=".presentation.view.home.HomeFragment">
 
     <TextView
-        android:id="@+id/welcom_onbord"
+        android:id="@+id/home_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcom on OnBording fragment"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
-
-
-    <TextView
-        android:id="@+id/desc_onbord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcom_onbord"
-        app:layout_constraintVertical_bias="0.273" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_onbord"
+        android:id="@+id/button_next_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:text="@string/next_page"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_onbord" />
+        app:layout_constraintTop_toBottomOf="@+id/home_tv"
+        app:layout_constraintVertical_bias="0.406" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

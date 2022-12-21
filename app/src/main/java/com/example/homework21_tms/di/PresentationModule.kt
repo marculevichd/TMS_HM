@@ -1,7 +1,7 @@
 package com.example.homework21_tms.di
 
 import com.example.homework21_tms.domain.ItemInteractor
-import com.example.homework21_tms.presentation.view.ItemPresenter
+import com.example.homework21_tms.presentation.view.home.ItemPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

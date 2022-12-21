@@ -17,5 +17,6 @@
     <string name="cant_emtry">Field can\'t be empty</string>
     <string name="iv_clicked">ImageView clicked</string>
     <string name="msg">just a message</string>
+    <string name="logout">Logout</string>
 
 </resources>

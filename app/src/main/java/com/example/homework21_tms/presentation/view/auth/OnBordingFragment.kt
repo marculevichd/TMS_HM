@@ -1,15 +1,17 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentOnBordingBinding
+import com.example.homework21_tms.presentation.view.home.HomeFragment
+import com.example.homework21_tms.presentation.view.home.ItemsFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class OnBordingFragment : Fragment() {
 
 
@@ -20,7 +22,7 @@ class OnBordingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _viewBinding = FragmentOnBordingBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -28,12 +30,12 @@ class OnBordingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewBinding.descOnbord.text
 
         viewBinding.btnOnbord.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
-                .replace(R.id.activity_container, ItemsFragment())
+                .replace(R.id.activity_container, HomeFragment())
                 .commit()
         }
     }

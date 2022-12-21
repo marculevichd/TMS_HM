@@ -1,7 +1,6 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.auth
 
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,22 +9,27 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.homework21_tms.R
+import com.example.homework21_tms.databinding.FragmentDetailsBinding
+import com.example.homework21_tms.databinding.FragmentLoginBinding
+import com.example.homework21_tms.presentation.view.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
+    @Inject
+    lateinit var loginPresenter: LoginPresenter
 
-    private var _viewBinding: Binding? = null
+    private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        _viewBinding = FragmentLoginBinding.inflate(inflater)
+        return viewBinding.root
     }
 
 
@@ -46,17 +50,16 @@ class LoginFragment : Fragment() {
             } else if (password.text.isEmpty()) {
                 Toast.makeText(context, getString(R.string.cant_emtry), Toast.LENGTH_SHORT).show()
             } else {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, OnBordingFragment())
-                    .commit()
+
+                loginPresenter.loginUser(login.text.toString(), password.text.toString())
+
+                loginPresenter.nav.observe(viewLifecycleOwner) {
+                    parentFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.activity_container, OnBordingFragment())
+                        .commit()
+                }
             }
-
-
         }
-
-
     }
-
-
 }

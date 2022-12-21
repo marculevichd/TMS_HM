@@ -1,4 +1,4 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework21_tms.R
-import com.example.homework21_tms.data.ItemRepositoryImpl
 import com.example.homework21_tms.databinding.FragmentItemsBinding
-import com.example.homework21_tms.domain.ItemInteractor
 import com.example.homework21_tms.domain.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
