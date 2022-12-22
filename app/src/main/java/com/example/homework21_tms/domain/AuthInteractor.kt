@@ -9,19 +9,25 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
         authRepository.loginUser(userName, userPassword)
     }
 
-
     fun getUserCreds(): UserModel {
         return authRepository.showUserCreds()
     }
-
 
     fun checkUserExists():Boolean{
         return authRepository.doesUserExist()
     }
 
-
-
     fun logoutuser(): Unit{
         authRepository.userLogout()
     }
+
+
+    fun saveResultOnBoard(result:Boolean) {
+        authRepository.saveResultOnBoard(result)
+    }
+
+     fun isOnBoardingShows(): Boolean {
+        return authRepository.isOnBoardingShows()
+    }
+
 }

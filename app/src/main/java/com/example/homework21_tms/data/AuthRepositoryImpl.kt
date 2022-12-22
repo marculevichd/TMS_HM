@@ -22,4 +22,14 @@ class AuthRepositoryImpl @Inject constructor(private val sharedPreferencesHelper
     override fun userLogout() {
         sharedPreferencesHelper.removeUser()
     }
+
+    override fun saveResultOnBoard(result:Boolean) {
+        sharedPreferencesHelper.saveResultOnBoard(result)
+    }
+
+    override fun isOnBoardingShows(): Boolean {
+        return sharedPreferencesHelper.isOnBoardingShows()
+    }
+
+
 }

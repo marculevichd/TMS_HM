@@ -11,11 +11,20 @@ class LoginPresenter @Inject constructor(private val authInteractor: AuthInterac
     private val _nav = MutableLiveData<Unit?>()
     val nav: LiveData<Unit?> = _nav
 
+    private val _showOnBoard = MutableLiveData<Boolean>()
+    val showOnBoard: LiveData<Boolean> = _showOnBoard
+
 
     fun loginUser(userName: String, userPassword: String) {
         authInteractor.loginUser(userName, userPassword)
         _nav.value = Unit
     }
+
+
+    fun checkOnBoard() {
+        _showOnBoard.value = authInteractor.isOnBoardingShows()
+    }
+
 
 
 }

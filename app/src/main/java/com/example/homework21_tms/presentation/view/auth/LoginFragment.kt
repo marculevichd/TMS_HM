@@ -42,6 +42,8 @@ class LoginFragment : Fragment() {
         val password = view.findViewById<EditText>(R.id.password_login_fr)
 
 
+        loginPresenter.checkOnBoard()
+
 
         btn.setOnClickListener {
 
@@ -54,12 +56,19 @@ class LoginFragment : Fragment() {
                 loginPresenter.loginUser(login.text.toString(), password.text.toString())
 
                 loginPresenter.nav.observe(viewLifecycleOwner) {
-                    parentFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.activity_container, OnBordingFragment())
-                        .commit()
+
+                    loginPresenter.showOnBoard.observe(viewLifecycleOwner){
+                        parentFragmentManager
+                            .beginTransaction()
+                            .replace(    R.id.activity_container, when (it) {
+                                true -> HomeFragment()
+                                false -> OnBordingFragment()})
+                            .commit()
+                    }
+
                 }
             }
         }
     }
 }
+

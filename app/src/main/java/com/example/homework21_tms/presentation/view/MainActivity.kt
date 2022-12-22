@@ -26,18 +26,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(_binding!!.root)
 
 
-        mainPresenter.checkUserExists()
+        mainPresenter.whichFragmentToShow()
 
-        mainPresenter.userExist.observe(this) {
+        mainPresenter.whichFragmentToShow.observe(this) {
 
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(
-                R.id.activity_container,
-                when (it) {
-                    true -> HomeFragment()
-                    false -> LoginFragment()
-                }
-            )
+            fragmentTransaction.replace(R.id.activity_container, mainPresenter.whichFragmentToShow.value!!)
             fragmentTransaction.commit()
         }
     }

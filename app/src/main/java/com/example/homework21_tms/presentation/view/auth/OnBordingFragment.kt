@@ -10,10 +10,13 @@ import com.example.homework21_tms.databinding.FragmentOnBordingBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OnBordingFragment : Fragment() {
 
+    @Inject
+    lateinit var onBoardPresenter: OnBoardingPresenter
 
     private var _viewBinding: FragmentOnBordingBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -33,6 +36,12 @@ class OnBordingFragment : Fragment() {
         viewBinding.descOnbord.text
 
         viewBinding.btnOnbord.setOnClickListener {
+
+
+            onBoardPresenter.saveOnBoard(true)
+
+
+
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, HomeFragment())
