@@ -14,7 +14,7 @@ import com.example.homework21_tms.databinding.FragmentLoginBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
+// ДОДЕЛАТЬ КНОПКУ НАЗАД, чтобы не заходило в детейлс после логаута
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
