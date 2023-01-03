@@ -1,4 +1,4 @@
-package com.example.homework21_tms.domain
+package com.example.homework21_tms.domain.home
 
 import com.example.homework21_tms.domain.model.ItemsModel
 import javax.inject.Inject

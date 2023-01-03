@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.OnBordingFragment">
+    tools:context=".presentation.view.auth.OnBoardingFragment">
 
     <TextView
         android:id="@+id/welcom_onbord"

@@ -1,4 +1,4 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.home
 
 import com.example.homework21_tms.domain.model.ItemsModel
 
@@ -9,10 +9,7 @@ interface ItemsView {
     fun imageViewClicked(ivClicked: Int)
 
     fun goToDetails(
-        title: String,
-        description: Int,
-        time: String,
-        image: Int
+        navigationData:NavigateWithBundle
     )
 
 

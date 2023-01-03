@@ -1,4 +1,4 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework21_tms.R
-import com.example.homework21_tms.data.ItemRepositoryImpl
 import com.example.homework21_tms.databinding.FragmentItemsBinding
-import com.example.homework21_tms.domain.ItemInteractor
 import com.example.homework21_tms.domain.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
@@ -33,7 +31,6 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _viewBinding = FragmentItemsBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -51,7 +48,6 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
         viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
 
         itemsPresenter.getData()
-
     }
 
 
@@ -66,7 +62,6 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
         image_listener: Int
     ) {
         itemsPresenter.elementSelected(title_listener, description_listener, time_listener, image_listener)
-
     }
 
     override fun dataReceived(list: List<ItemsModel>) {
@@ -77,13 +72,13 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
         Toast.makeText(context, "just a message", Toast.LENGTH_SHORT).show()
     }
 
-    override fun goToDetails(title: String, description: Int, time: String, image: Int) {
+    override fun goToDetails(navigationData:NavigateWithBundle) {
         val detailsFragment = DetailsFragment()
         val bundle = Bundle()
-        bundle.putString("title_listener", title)
-        bundle.putInt("description_listener", description)
-        bundle.putString("time_listener", time)
-        bundle.putInt("image_listener", image)
+        bundle.putString("title_listener", navigationData.title)
+        bundle.putInt("description_listener", navigationData.description)
+        bundle.putString("time_listener", navigationData.time)
+        bundle.putInt("image_listener", navigationData.image)
         detailsFragment.arguments = bundle
 
         parentFragmentManager
@@ -91,7 +86,5 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
             .replace(R.id.activity_container, detailsFragment)
             .addToBackStack("")
             .commit()
-
-
     }
 }

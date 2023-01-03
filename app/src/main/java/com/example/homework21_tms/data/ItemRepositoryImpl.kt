@@ -1,7 +1,7 @@
 package com.example.homework21_tms.data
 
 import com.example.homework21_tms.R
-import com.example.homework21_tms.domain.ItemRepository
+import com.example.homework21_tms.domain.home.ItemRepository
 import com.example.homework21_tms.domain.model.ItemsModel
 import javax.inject.Inject
 

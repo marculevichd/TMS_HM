@@ -1,16 +1,16 @@
-package com.example.homework21_tms.presentation.view
+package com.example.homework21_tms.presentation.view.home
 
 import com.example.homework21_tms.R
-import com.example.homework21_tms.domain.ItemInteractor
+import com.example.homework21_tms.domain.home.ItemInteractor
 import javax.inject.Inject
 
 class ItemPresenter @Inject constructor(
-    val itemInteractor: ItemInteractor
+    private val itemInteractor: ItemInteractor
 ) {
 
-    private lateinit var itemsView: ItemsView // убрали из конструктора и добавли метод set
+    private lateinit var itemsView: ItemsView
 
-    fun setView(context:ItemsView){
+    fun setView(context: ItemsView) {
         itemsView = context
     }
 
@@ -30,7 +30,14 @@ class ItemPresenter @Inject constructor(
         time: String,
         image: Int
     ) {
-        itemsView.goToDetails(title, description, time, image)
+        itemsView.goToDetails(NavigateWithBundle(title, description, time, image))
     }
 
 }
+
+data class NavigateWithBundle(
+    val title: String,
+    val description: Int,
+    val time: String,
+    val image: Int
+)
