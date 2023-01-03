@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentItemsBinding
@@ -16,22 +17,20 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ItemsFragment : Fragment(), ItemListener, ItemsView {
+class ItemsFragment : Fragment(), ItemListener {
 
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
     lateinit var itemsAdapter: ItemsAdapter
 
-    @Inject
-    lateinit var itemsPresenter: ItemPresenter
+    private val itemsViewModel: ItemViewModel by viewModels()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _viewBinding = FragmentItemsBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -40,21 +39,45 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemsPresenter.setView(this)
-
         itemsAdapter = ItemsAdapter(this)
 
 
         viewBinding.recyclerView.adapter = itemsAdapter
         viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
 
-        itemsPresenter.getData()
+        itemsViewModel.getData()
 
+        itemsViewModel.items.observe(viewLifecycleOwner) { listItems ->
+            itemsAdapter.submitList(listItems)
+        }
+
+
+        itemsViewModel.msg.observe(viewLifecycleOwner) { msg ->
+            Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+        }
+
+        itemsViewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val detailsFragment = DetailsFragment()
+                val bundle = Bundle()
+                bundle.putString("title_listener", navBundle.title)
+                bundle.putInt("description_listener", navBundle.description)
+                bundle.putString("time_listener", navBundle.time)
+                bundle.putInt("image_listener", navBundle.image)
+                detailsFragment.arguments = bundle
+
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_container, detailsFragment)
+                    .addToBackStack("")
+                    .commit()
+            }
+
+        }
     }
 
-
     override fun onClick() {
-        itemsPresenter.imageViewClicked()
+        itemsViewModel.imageViewClicked()
     }
 
     override fun onElementSelected(
@@ -63,33 +86,11 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
         time_listener: String,
         image_listener: Int
     ) {
-        itemsPresenter.elementSelected(title_listener, description_listener, time_listener, image_listener)
-
-    }
-
-    override fun dataReceived(list: List<ItemsModel>) {
-        itemsAdapter.submitList(list)
-    }
-
-    override fun imageViewClicked(ivClicked: Int) {
-        Toast.makeText(context, "just a message", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun goToDetails(title: String, description: Int, time: String, image: Int) {
-        val detailsFragment = DetailsFragment()
-        val bundle = Bundle()
-        bundle.putString("title_listener", title)
-        bundle.putInt("description_listener", description)
-        bundle.putString("time_listener", time)
-        bundle.putInt("image_listener", image)
-        detailsFragment.arguments = bundle
-
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack("")
-            .commit()
-
-
+        itemsViewModel.elementSelected(
+            title_listener,
+            description_listener,
+            time_listener,
+            image_listener
+        )
     }
 }

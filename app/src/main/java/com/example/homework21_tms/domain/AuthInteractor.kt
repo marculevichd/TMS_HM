@@ -17,7 +17,7 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
         return authRepository.doesUserExist()
     }
 
-    fun logoutuser(): Unit{
+    fun logoutUser(): Unit{
         authRepository.userLogout()
     }
 

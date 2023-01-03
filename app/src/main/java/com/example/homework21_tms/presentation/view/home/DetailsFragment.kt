@@ -5,18 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.presentation.view.auth.LoginFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
 
-    @Inject
-    lateinit var detailsPresenter: DetailsPresenter
+    private val viewModel: DetailsViewModel by viewModels()
 
     private var _viewBinding: FragmentDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -36,7 +35,6 @@ class DetailsFragment : Fragment() {
 
         val bundle = arguments
         bundle?.let { safeBundle ->
-
             viewBinding.titleDetails.text = safeBundle.getString("title_listener")
             viewBinding.descriptionDetails.setText(safeBundle.getInt("description_listener"))
             viewBinding.timeDetails.text = safeBundle.getString("time_listener")
@@ -45,10 +43,10 @@ class DetailsFragment : Fragment() {
 
 
         viewBinding.buttonLogout.setOnClickListener {
-            detailsPresenter.logoutUser()
+            viewModel.logoutUser()
         }
 
-        detailsPresenter.userLogout.observe(viewLifecycleOwner) {
+        viewModel.userLogout.observe(viewLifecycleOwner) {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.activity_container, LoginFragment()).commit()
         }

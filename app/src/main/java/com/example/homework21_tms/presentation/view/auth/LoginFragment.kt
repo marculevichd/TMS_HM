@@ -8,18 +8,35 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
-import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.databinding.FragmentLoginBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-// ДОДЕЛАТЬ КНОПКУ НАЗАД, чтобы не заходило в детейлс после логаута
+
+
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    @Inject
-    lateinit var loginPresenter: LoginPresenter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val callBack = requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (isEnabled) {
+                        isEnabled = false
+                        requireActivity().onBackPressed()
+                    }
+                }
+            })
+    }
+
+
+    private val loginViewModel: LoginViewModel by viewModels()
 
     private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -36,36 +53,25 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewBinding.checkDataAndGoToOnbordingLoginFr.setOnClickListener {
 
-        val btn = view.findViewById<Button>(R.id.check_data_and_go_to_onbording_login_fr)
-        val login = view.findViewById<EditText>(R.id.login_login_fr)
-        val password = view.findViewById<EditText>(R.id.password_login_fr)
-
-
-        loginPresenter.checkOnBoard()
-
-
-        btn.setOnClickListener {
-
-            if (login.text.isEmpty()) {
+            if (viewBinding.loginLoginFr.text?.isEmpty() == true) {
                 Toast.makeText(context, getString(R.string.cant_emtry), Toast.LENGTH_SHORT).show()
-            } else if (password.text.isEmpty()) {
+            } else if (viewBinding.passwordLoginFr.text?.isEmpty() == true) {
                 Toast.makeText(context, getString(R.string.cant_emtry), Toast.LENGTH_SHORT).show()
             } else {
+                loginViewModel.loginUser(
+                    viewBinding.loginLoginFr.text.toString(),
+                    viewBinding.passwordLoginFr.text.toString()
+                )
 
-                loginPresenter.loginUser(login.text.toString(), password.text.toString())
+                loginViewModel.whichFragmentToShowIfOnBoardShows()
 
-                loginPresenter.nav.observe(viewLifecycleOwner) {
-
-                    loginPresenter.showOnBoard.observe(viewLifecycleOwner){
-                        parentFragmentManager
-                            .beginTransaction()
-                            .replace(    R.id.activity_container, when (it) {
-                                true -> HomeFragment()
-                                false -> OnBordingFragment()})
-                            .commit()
-                    }
-
+                loginViewModel.showOnBoard.observe(viewLifecycleOwner) {
+                    parentFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.activity_container, loginViewModel.showOnBoard.value!!)
+                        .commit()
                 }
             }
         }

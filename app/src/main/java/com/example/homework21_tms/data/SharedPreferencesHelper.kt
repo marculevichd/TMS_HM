@@ -41,8 +41,8 @@ class SharedPreferencesHelper @Inject constructor(
         sharedPreferences.edit().putBoolean(SHOW_ONBOARD, result).apply()
     }
 
-    fun isOnBoardingShows():Boolean{
-        return sharedPreferences.getBoolean(SHOW_ONBOARD,false)
+    fun isOnBoardingShows(): Boolean {
+        return sharedPreferences.getBoolean(SHOW_ONBOARD, false)
     }
 
 
@@ -50,6 +50,6 @@ class SharedPreferencesHelper @Inject constructor(
         private const val USER_NAME = "USER_NAME"
         private const val USER_PASSWORD = "USER_PASSWORD"
         private const val SHOW_ONBOARD = "SHOW_ONBOARD"
-        }
+    }
 
 }
