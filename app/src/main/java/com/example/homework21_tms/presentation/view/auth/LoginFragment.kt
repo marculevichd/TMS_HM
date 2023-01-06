@@ -37,7 +37,6 @@ class LoginFragment : Fragment(), LoginView {
 
         loginPresenter.setView(this)
 
-        loginPresenter.checkUserSawOnBoard()
 
 
         viewBinding.checkDataAndGoToOnbordingLoginFr.setOnClickListener {
@@ -52,6 +51,8 @@ class LoginFragment : Fragment(), LoginView {
                     viewBinding.loginLoginFr.text.toString(),
                     viewBinding.passwordLoginFr.text.toString()
                 )
+                loginPresenter.checkUserSawOnBoard()
+
             }
         }
     }
