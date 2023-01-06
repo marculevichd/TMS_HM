@@ -19,4 +19,12 @@ class OnBoardingViewModel@Inject constructor(private val authInteractor: AuthInt
         _nav.value = Unit
     }
 
+    private var _userSawOnBoard = MutableLiveData<Boolean>()
+    val userSawOnBoard: LiveData<Boolean> = _userSawOnBoard
+
+    fun checkUserSawOnBoard() {
+        _userSawOnBoard.value = authInteractor.isOnBoardingShows()
+    }
+
+
 }

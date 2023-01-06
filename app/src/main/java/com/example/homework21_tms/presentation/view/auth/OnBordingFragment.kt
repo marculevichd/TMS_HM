@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentOnBordingBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
+import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +32,22 @@ class OnBordingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        onBoardViewModel.checkUserSawOnBoard()
+
+        onBoardViewModel.userSawOnBoard.observe(this) {
+            val fragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.activity_container,
+                when (it) {
+                    true ->  ItemsFragment()
+                    false -> TODO()
+                }
+            )
+            fragmentTransaction.commit()
+        }
+
+
 
         viewBinding.btnOnbord.setOnClickListener {
 

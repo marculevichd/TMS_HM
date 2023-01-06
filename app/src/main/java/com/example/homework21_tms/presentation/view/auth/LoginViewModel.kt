@@ -15,8 +15,8 @@ class LoginViewModel @Inject constructor(private val authInteractor: AuthInterac
     private val _nav = MutableLiveData<Unit?>()
     val nav: LiveData<Unit?> = _nav
 
-    private val _showOnBoard = MutableLiveData<Fragment>()
-    val showOnBoard: LiveData<Fragment> = _showOnBoard
+    private val _showOnBoard = MutableLiveData<Boolean>()
+    val showOnBoard: LiveData<Boolean> = _showOnBoard
 
 
     fun loginUser(userName: String, userPassword: String) {
@@ -24,14 +24,7 @@ class LoginViewModel @Inject constructor(private val authInteractor: AuthInterac
         _nav.value = Unit
     }
 
-
-
-    fun whichFragmentToShowIfOnBoardShows(){
-        if (authInteractor.isOnBoardingShows() == true) {
-            _showOnBoard.value = HomeFragment()
-        } else if (authInteractor.isOnBoardingShows() == false) {
-            _showOnBoard.value =OnBordingFragment()
-        }
+    fun whichFragmentToShowIfOnBoardShows() {
+        _showOnBoard.value = authInteractor.isOnBoardingShows()
     }
-
 }

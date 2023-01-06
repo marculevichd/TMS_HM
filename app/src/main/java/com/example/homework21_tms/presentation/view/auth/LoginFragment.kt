@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentLoginBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
+import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -70,7 +71,13 @@ class LoginFragment : Fragment() {
                 loginViewModel.showOnBoard.observe(viewLifecycleOwner) {
                     parentFragmentManager
                         .beginTransaction()
-                        .replace(R.id.activity_container, loginViewModel.showOnBoard.value!!)
+                        .replace(
+                            R.id.activity_container,
+                            when (it) {
+                                true -> ItemsFragment()
+                                false -> OnBordingFragment()
+                            }
+                        )
                         .commit()
                 }
             }

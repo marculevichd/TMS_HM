@@ -2,7 +2,9 @@ package com.example.homework21_tms.presentation.view
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.homework21_tms.domain.AuthInteractor
 import com.example.homework21_tms.presentation.view.auth.LoginFragment
@@ -15,26 +17,38 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val authInteractor: AuthInteractor): ViewModel() {
 
-//    private val _userExist = MutableLiveData<Boolean>()
-//    val userExist: LiveData<Boolean> = _userExist
-
-//
-//    fun checkUserExists() {
-//        _userExist.value = authInteractor.checkUserExists()
-//    }
+    private var _userExist = MutableLiveData<Boolean>()
+    val userExist: LiveData<Boolean> = _userExist
 
 
-    private val _whichFragmentToShow = MutableLiveData<Fragment>()
-    val whichFragmentToShow: LiveData<Fragment> = _whichFragmentToShow
-
-    fun whichFragmentToShow() {
-            if (authInteractor.checkUserExists() == true && authInteractor.isOnBoardingShows() == true) {
-                _whichFragmentToShow.value =HomeFragment()
-            } else if (authInteractor.checkUserExists() == true && authInteractor.isOnBoardingShows() == false) {
-                _whichFragmentToShow.value =OnBordingFragment()
-            } else if (authInteractor.checkUserExists() == false && authInteractor.isOnBoardingShows() == false) {
-                _whichFragmentToShow.value =LoginFragment()
-            }
+    fun checkUserExists() {
+        _userExist.value = authInteractor.checkUserExists()
     }
+
+
+    private var _userSawOnBoard = MutableLiveData<Boolean>()
+    val userSawOnBoard: LiveData<Boolean> = _userSawOnBoard
+
+    fun checkUserSawOnBoard() {
+        _userSawOnBoard.value = authInteractor.isOnBoardingShows()
+    }
+
+
+
+
+
+
+//    private val _whichFragmentToShow = MutableLiveData<Fragment>()
+//    val whichFragmentToShow: LiveData<Fragment> = _whichFragmentToShow
+//
+//    fun whichFragmentToShow() {
+//            if (authInteractor.checkUserExists() == true && authInteractor.isOnBoardingShows() == true) {
+//                _whichFragmentToShow.value =HomeFragment()
+//            } else if (authInteractor.checkUserExists() == true && authInteractor.isOnBoardingShows() == false) {
+//                _whichFragmentToShow.value =OnBordingFragment()
+//            } else if (authInteractor.checkUserExists() == false && authInteractor.isOnBoardingShows() == false) {
+//                _whichFragmentToShow.value =LoginFragment()
+//            }
+//    }
 
 }
