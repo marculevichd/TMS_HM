@@ -11,6 +11,7 @@ import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.ActivityMainBinding
 import com.example.homework21_tms.presentation.view.auth.LoginFragment
 import com.example.homework21_tms.presentation.view.auth.OnBordingFragment
+import com.example.homework21_tms.presentation.view.home.HomeFragment
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,77 +22,42 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
 
-//    private lateinit var observeUserSawOnBoard: Fragment
+    private lateinit var observeUserSawOnBoard: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_binding!!.root)
 
+
+
+
+
+
+
+        viewModel.checkUserSawOnBoard()
+
+        viewModel.userSawOnBoard.observe(this) {
+            when (it) {
+                false -> observeUserSawOnBoard = OnBordingFragment()
+                true -> observeUserSawOnBoard = HomeFragment()
+            }
+        }
+
         viewModel.checkUserExists()
 
-                viewModel.userExist.observe(this) {
+        viewModel.userExist.observe(this) {
 
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.add(
                 R.id.activity_container,
                 when (it) {
                     false -> LoginFragment()
-                    true -> OnBordingFragment()
-                })
+                    true -> observeUserSawOnBoard
+                }
+            )
             fragmentTransaction.commit()
         }
-
-//        viewModel.checkUserExists()
-//
-//        viewModel.userExist.observe(this) {
-//            val fragmentTransaction = supportFragmentManager.beginTransaction()
-//            fragmentTransaction.add(
-//                R.id.activity_container,
-//                when (it) {
-//                    false -> LoginFragment()
-//                    true ->  OnBordingFragment()}
-//                )
-//            fragmentTransaction.commit()
-//        }
-
-//
-//        viewModel.checkUserSawOnBoard()
-//
-//        viewModel.userSawOnBoard.observe(this) {
-//
-//            when (it) {
-//                false -> observeUserSawOnBoard = OnBordingFragment()
-//                true -> observeUserSawOnBoard = ItemsFragment()
-//            }
-//        }
-//
-//
-//        viewModel.checkUserExists()
-//
-//
-//
-//        viewModel.userExist.observe(this) {
-//
-//            val fragmentTransaction = supportFragmentManager.beginTransaction()
-//            fragmentTransaction.add(
-//                R.id.activity_container,
-//                when (it) {
-//                    false -> LoginFragment()
-//                    true -> observeUserSawOnBoard
-//                })
-//            fragmentTransaction.commit()
-//        }
-
-
-//        viewModel.whichFragmentToShow()
-//
-//        viewModel.whichFragmentToShow.observe(this) {
-//
-//            val fragmentTransaction = supportFragmentManager.beginTransaction()
-//            fragmentTransaction.replace(R.id.activity_container, viewModel.whichFragmentToShow.value!!)
-//            fragmentTransaction.commit()
-//        }
     }
 }
 

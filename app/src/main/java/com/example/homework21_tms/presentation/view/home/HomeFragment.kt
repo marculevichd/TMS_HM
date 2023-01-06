@@ -9,45 +9,43 @@ import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private var _viewBinding: FragmentHomeBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater)
-        return binding.root
+        _viewBinding = FragmentHomeBinding.inflate(inflater)
+        return viewBinding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.showUserData()
-        homeViewModel.userCreds.observe(viewLifecycleOwner){
-            binding.homeTv.text = "${it.userName} \n ${it.userPassword}"
+        homeViewModel.showUserCreds()
+        homeViewModel.nav.observe(viewLifecycleOwner){
+            viewBinding.homeTV.text = "${it.userName}"
         }
 
 
 
-        binding.buttonNextPage.setOnClickListener {
+        viewBinding.homeButton.setOnClickListener{
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_container, ItemsFragment())
-                .addToBackStack("")
                 .commit()
         }
-
-
     }
 
 

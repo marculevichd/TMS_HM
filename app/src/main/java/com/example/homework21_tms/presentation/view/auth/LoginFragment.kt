@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
@@ -15,27 +13,10 @@ import com.example.homework21_tms.databinding.FragmentLoginBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val callBack = requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (isEnabled) {
-                        isEnabled = false
-                        requireActivity().onBackPressed()
-                    }
-                }
-            })
-    }
-
 
     private val loginViewModel: LoginViewModel by viewModels()
 
@@ -74,7 +55,7 @@ class LoginFragment : Fragment() {
                         .replace(
                             R.id.activity_container,
                             when (it) {
-                                true -> ItemsFragment()
+                                true -> HomeFragment()
                                 false -> OnBordingFragment()
                             }
                         )

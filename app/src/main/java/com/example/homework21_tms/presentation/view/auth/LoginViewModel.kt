@@ -1,11 +1,9 @@
 package com.example.homework21_tms.presentation.view.auth
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.homework21_tms.domain.AuthInteractor
-import com.example.homework21_tms.presentation.view.home.HomeFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

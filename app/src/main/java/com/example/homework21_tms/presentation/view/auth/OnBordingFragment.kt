@@ -33,22 +33,6 @@ class OnBordingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onBoardViewModel.checkUserSawOnBoard()
-
-        onBoardViewModel.userSawOnBoard.observe(this) {
-            val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(
-                R.id.activity_container,
-                when (it) {
-                    true ->  ItemsFragment()
-                    false -> TODO()
-                }
-            )
-            fragmentTransaction.commit()
-        }
-
-
-
         viewBinding.btnOnbord.setOnClickListener {
 
             onBoardViewModel.saveOnBoard(true)

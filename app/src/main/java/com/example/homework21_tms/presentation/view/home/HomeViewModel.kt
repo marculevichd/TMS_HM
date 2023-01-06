@@ -9,13 +9,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel(){
-
-    private val _userCreds = MutableLiveData<UserModel>()
-    val userCreds: LiveData<UserModel> = _userCreds
+class HomeViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
 
-    fun showUserData(){
-        _userCreds.value = authInteractor.getUserCreds()
+    private val _nav = MutableLiveData<UserModel>()
+    val nav: LiveData<UserModel> = _nav
+
+    fun showUserCreds() {
+        _nav.value = authInteractor.getUserCreds()
     }
+
+
 }
