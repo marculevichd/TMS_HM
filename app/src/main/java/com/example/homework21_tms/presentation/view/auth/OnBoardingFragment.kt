@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentOnBordingBinding
+import com.example.homework21_tms.domain.model.UserModel
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -37,9 +38,16 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
 
         onBoardingPresenter.setView(this)
 
+        onBoardingPresenter.showUserCreds()
+
         viewBinding.btnOnbord.setOnClickListener {
+            onBoardingPresenter.saveIfUserSaveOnBoard(boolean = true)
             onBoardingPresenter.goToNextFragment()
         }
+    }
+
+    override fun showUserCreds(userModel: UserModel) {
+        viewBinding.descOnbord.text = "${userModel.name}"
     }
 
     override fun goToNextFragment() {

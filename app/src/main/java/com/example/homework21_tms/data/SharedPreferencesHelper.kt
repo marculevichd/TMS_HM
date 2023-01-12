@@ -38,7 +38,7 @@ class SharedPreferencesHelper @Inject constructor(private val sharedPreferences:
     }
 
     fun checkShowsOnBoard(): Boolean {
-        return (!sharedPreferences.getBoolean(SHOW_ONBOARD, false))
+        return (sharedPreferences.getBoolean(SHOW_ONBOARD, false))
     }
 
     companion object {
