@@ -4,15 +4,15 @@ import com.example.homework21_tms.domain.model.UserModel
 
 interface AuthRepository {
 
-    fun loginUser(userName: String, userPassword: String)
+    suspend fun loginUser(userName: String, userPassword: String)
 
-    fun showUserCreds(): UserModel
+    suspend fun showUserCreds(): UserModel
 
-    fun doesUserExist(): Boolean
+    suspend fun doesUserExist(): Boolean
 
-    fun userLogout()
+    suspend  fun userLogout()
 
-    fun saveIfUserSawOnBoard(bool: Boolean)
+    suspend fun saveIfUserSawOnBoard(bool: Boolean)
 
-    fun checkShowsOnBoard(): Boolean
+    suspend fun checkShowsOnBoard(): Boolean
 }

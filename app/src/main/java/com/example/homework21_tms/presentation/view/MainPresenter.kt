@@ -1,6 +1,8 @@
 package com.example.homework21_tms.presentation.view
 
+import android.util.Log
 import com.example.homework21_tms.domain.auth.AuthInteractor
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -13,7 +15,11 @@ class MainPresenter @Inject constructor(
     }
 
     fun checkUserExistsAndSawOnboard(){
-        mainView.userExistsAndSawOnboard(authInteractor.checkUserExists(), authInteractor.checkShowsOnBoard())
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("Handler", "checkUserExistsAndSawOnboard")
+        }
+        GlobalScope.launch(Dispatchers.Main + coroutineExceptionHandler) {
+            mainView.userExistsAndSawOnboard(authInteractor.checkUserExists(), authInteractor.checkShowsOnBoard())
+        }
     }
-
 }
