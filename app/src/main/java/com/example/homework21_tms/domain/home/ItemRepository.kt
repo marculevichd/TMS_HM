@@ -4,7 +4,7 @@ import com.example.homework21_tms.domain.model.ItemsModel
 
 interface ItemRepository {
 
-    fun getData(): List<ItemsModel>
+    suspend fun getData(): List<ItemsModel>
 
 
 }

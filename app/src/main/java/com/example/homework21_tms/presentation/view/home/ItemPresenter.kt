@@ -21,9 +21,21 @@ class ItemPresenter @Inject constructor(
 
 
     fun getData() {
-            val listItems = itemInteractor.getData()
-            itemsView.dataReceived(listItems)
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("Handler", "getData")
+        }
+
+        GlobalScope.launch {
+
+            try {
+                val listItems = itemInteractor.getData()
+                itemsView.dataReceived(listItems)
+            } catch (e: Exception) {
+                Log.w("Exception", "getData")
             }
+        }
+
+    }
 
     fun imageViewClicked() {
         itemsView.imageViewClicked(R.string.iv_clicked)
