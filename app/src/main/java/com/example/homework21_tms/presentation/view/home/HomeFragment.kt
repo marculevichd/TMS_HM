@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentHomeBinding
+import com.example.homework21_tms.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -34,19 +35,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         homeViewModel.showUserCreds()
-        homeViewModel.nav.observe(viewLifecycleOwner){
+        homeViewModel.userCreds.observe(viewLifecycleOwner) {
             viewBinding.homeTV.text = "${it.userName}"
         }
 
-
-
-        viewBinding.homeButton.setOnClickListener{
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, ItemsFragment())
-                .commit()
+        viewBinding.homeButton.setOnClickListener {
+            homeViewModel.nav()
+            homeViewModel.nav.observe(viewLifecycleOwner) {
+                navigate(it!!)
+            }
         }
     }
-
-
 }

@@ -10,6 +10,7 @@ import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentOnBordingBinding
 import com.example.homework21_tms.presentation.view.home.HomeFragment
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
+import com.example.homework21_tms.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,12 +38,12 @@ class OnBordingFragment : Fragment() {
 
             onBoardViewModel.saveOnBoard(true)
 
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, HomeFragment())
-                .commit()
+            onBoardViewModel.nav()
+            onBoardViewModel.nav.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    replaceGraph(it)
+                }
+            }
         }
     }
-
-
 }

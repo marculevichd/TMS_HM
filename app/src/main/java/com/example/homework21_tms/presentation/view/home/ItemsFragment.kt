@@ -13,6 +13,7 @@ import com.example.homework21_tms.databinding.FragmentItemsBinding
 import com.example.homework21_tms.domain.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
+import com.example.homework21_tms.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -58,26 +59,20 @@ class ItemsFragment : Fragment(), ItemListener {
 
         itemsViewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
-                val detailsFragment = DetailsFragment()
                 val bundle = Bundle()
                 bundle.putString("title_listener", navBundle.title)
                 bundle.putInt("description_listener", navBundle.description)
                 bundle.putString("time_listener", navBundle.time)
                 bundle.putInt("image_listener", navBundle.image)
-                detailsFragment.arguments = bundle
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, detailsFragment)
-                    .addToBackStack("")
-                    .commit()
+                navigateWithBundle(navBundle.destinationId, bundle)
             }
-
         }
     }
 
     override fun onClick() {
         itemsViewModel.imageViewClicked()
+        itemsViewModel.userNavigated()
     }
 
     override fun onElementSelected(

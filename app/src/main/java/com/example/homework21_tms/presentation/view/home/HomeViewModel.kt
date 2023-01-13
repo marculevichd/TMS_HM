@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.homework21_tms.R
 import com.example.homework21_tms.domain.AuthInteractor
 import com.example.homework21_tms.domain.model.UserModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,18 +17,34 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
 
-    private val _nav = MutableLiveData<UserModel>()
-    val nav: LiveData<UserModel> = _nav
+    private val _userCreds = MutableLiveData<UserModel>()
+    val userCreds: LiveData<UserModel> = _userCreds
+
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
 
     fun showUserCreds() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("Handler", "checkUserExists")
         }
-        viewModelScope.launch (coroutineExceptionHandler) {
+        viewModelScope.launch(coroutineExceptionHandler) {
             try {
-                _nav.value = authInteractor.getUserCreds()
+                _userCreds.value = authInteractor.getUserCreds()
             } catch (e: Exception) {
                 Log.w("Exception", "showUserCreds")
+            }
+        }
+    }
+
+    fun nav() {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("Handler", "nav")
+        }
+        viewModelScope.launch(coroutineExceptionHandler) {
+            try {
+                _nav.value = R.id.action_homeFragment_to_itemsFragment
+            } catch (e: Exception) {
+                Log.w("Exception", "nav")
             }
         }
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.homework21_tms.R
 import com.example.homework21_tms.domain.AuthInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -15,33 +16,22 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
 
-    private var _userExist = MutableLiveData<Boolean>()
-    val userExist: LiveData<Boolean> = _userExist
+    private var _resultCheckUserExists = MutableLiveData<Int>()
+    val resultCheckUserExists: LiveData<Int> =
+        _resultCheckUserExists
 
-
-    fun checkUserExists() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
-            Log.w("Handler", "checkUserExists")
+    fun checkResultUserExist() {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("Handler", "checkResultUserExist")
         }
-        viewModelScope.launch (coroutineExceptionHandler) {
+        viewModelScope.launch(coroutineExceptionHandler) {
             try {
-                _userExist.value = authInteractor.checkUserExists()
-            } catch (e: Exception) {
-                Log.w("Exception", "checkUserExists")
-            }
-        }
-    }
-
-    private var _userSawOnBoard = MutableLiveData<Boolean>()
-    val userSawOnBoard: LiveData<Boolean> = _userSawOnBoard
-
-    fun checkUserSawOnBoard() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
-            Log.w("Handler", "checkUserExists")
-        }
-        viewModelScope.launch (coroutineExceptionHandler) {
-            try {
-                _userSawOnBoard.value = authInteractor.isOnBoardingShows()
+                val userExist: Boolean = authInteractor.checkUserExists()
+                _resultCheckUserExists.value =
+                    when (userExist) {
+                        true -> R.navigation.main_graph
+                        false -> R.navigation.auth_graph
+                    }
             } catch (e: Exception) {
                 Log.w("Exception", "checkUserSawOnBoard")
             }

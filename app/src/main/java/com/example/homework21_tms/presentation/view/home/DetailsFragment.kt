@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.presentation.view.auth.LoginFragment
+import com.example.homework21_tms.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,8 +48,7 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.userLogout.observe(viewLifecycleOwner) {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_container, LoginFragment()).commit()
+            replaceGraph(it!!)
         }
     }
 }

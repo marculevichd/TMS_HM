@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentLoginBinding
-import com.example.homework21_tms.presentation.view.home.HomeFragment
-import com.example.homework21_tms.presentation.view.home.ItemsFragment
+import com.example.homework21_tms.utils.NavHelper.navigateWithDeleteBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -46,23 +44,16 @@ class LoginFragment : Fragment() {
                     viewBinding.loginLoginFr.text.toString(),
                     viewBinding.passwordLoginFr.text.toString()
                 )
+            }
 
-                loginViewModel.whichFragmentToShowIfOnBoardShows()
+            loginViewModel.navToOnBoard()
 
-                loginViewModel.showOnBoard.observe(viewLifecycleOwner) {
-                    parentFragmentManager
-                        .beginTransaction()
-                        .replace(
-                            R.id.activity_container,
-                            when (it) {
-                                true -> HomeFragment()
-                                false -> OnBordingFragment()
-                            }
-                        )
-                        .commit()
+            loginViewModel.nav.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    navigateWithDeleteBackStack(it.destinationId, it.fragmentToDelete)
+                    loginViewModel.userNavigated()
                 }
             }
         }
     }
 }
-
