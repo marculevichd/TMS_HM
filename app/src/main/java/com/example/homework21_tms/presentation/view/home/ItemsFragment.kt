@@ -12,6 +12,7 @@ import com.example.homework21_tms.databinding.FragmentItemsBinding
 import com.example.homework21_tms.domain.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
+import com.example.homework21_tms.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -73,18 +74,13 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
     }
 
     override fun goToDetails(navigationData:NavigateWithBundle) {
-        val detailsFragment = DetailsFragment()
         val bundle = Bundle()
         bundle.putString("title_listener", navigationData.title)
         bundle.putInt("description_listener", navigationData.description)
         bundle.putString("time_listener", navigationData.time)
         bundle.putInt("image_listener", navigationData.image)
-        detailsFragment.arguments = bundle
 
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack("")
-            .commit()
+        navigateWithBundle(R.id.action_itemsFragment_to_detailsFragment, bundle)
+
     }
 }

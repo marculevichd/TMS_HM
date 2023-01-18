@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.homework21_tms.R
-import com.example.homework21_tms.databinding.FragmentOnBordingBinding
+import com.example.homework21_tms.databinding.FragmentOnBoardingBinding
 import com.example.homework21_tms.domain.model.UserModel
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
+import com.example.homework21_tms.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class OnBoardingFragment : Fragment(), OnBoardingView {
 
 
-    private var _viewBinding: FragmentOnBordingBinding? = null
+    private var _viewBinding: FragmentOnBoardingBinding? = null
     private val viewBinding get() = _viewBinding!!
 
 
@@ -28,7 +29,7 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding = FragmentOnBordingBinding.inflate(inflater)
+        _viewBinding = FragmentOnBoardingBinding.inflate(inflater)
         return viewBinding.root
     }
 
@@ -48,10 +49,7 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
     }
 
     override fun goToNextFragment() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, ItemsFragment())
-            .commit()
+        replaceGraph(R.navigation.home_graph)
     }
 
     override fun showUserCreds(userModel: UserModel) {

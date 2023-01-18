@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.presentation.view.auth.LoginFragment
+import com.example.homework21_tms.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -50,10 +51,7 @@ class DetailsFragment : Fragment(), DetailsView {
     }
 
     override fun userLogOut() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, LoginFragment())
-            .commit()
+        replaceGraph(R.navigation.auth_graph)
     }
 
     override fun showDetailInfo(title: String, description: Int, time: String, image: Int) {

@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentLoginBinding
 import com.example.homework21_tms.presentation.view.home.ItemsFragment
+import com.example.homework21_tms.utils.NavHelper.navigate
+import com.example.homework21_tms.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -59,13 +62,12 @@ class LoginFragment : Fragment(), LoginView {
 
 
     override fun checkOnBoard(userSaw: Boolean) {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container,
-                when (userSaw) {
-                    true -> ItemsFragment()
-                    false -> OnBoardingFragment()})
-            .commit()
+
+        when (userSaw) {
+            true -> replaceGraph(R.navigation.home_graph)
+            false -> navigate(R.id.action_loginFragment_to_onBoardingFragment)
+        }
+
     }
 
 
