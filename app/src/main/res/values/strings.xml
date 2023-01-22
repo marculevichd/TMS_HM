@@ -18,5 +18,8 @@
     <string name="iv_clicked">ImageView clicked</string>
     <string name="msg">just a message</string>
     <string name="logout">Logout</string>
+    <string name="home_fragment">Home fragment</string>
+    <string name="go_to_retrofit_fragment">Go to Retrofit Fragment</string>
+    <string name="go_to_items_fragment">Go to Items Fragment</string>
 
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_graph"
-    app:startDestination="@id/itemsFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/itemsFragment"
@@ -19,4 +19,21 @@
         android:name="com.example.homework21_tms.presentation.view.home.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.homework21_tms.presentation.view.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_itemsFragment"
+            app:destination="@id/itemsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_retrofitExampleFragment"
+            app:destination="@id/retrofitExampleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/retrofitExampleFragment"
+        android:name="com.example.homework21_tms.presentation.view.home.RetrofitExampleFragment"
+        android:label="fragment_retrofit_example"
+        tools:layout="@layout/fragment_retrofit_example" />
 </navigation>

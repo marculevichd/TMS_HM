@@ -63,4 +63,14 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
+    //retrofit работа с сетью
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // конвертер gson работа с сетью
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // picasso работа с сетью
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
