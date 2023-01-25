@@ -18,7 +18,7 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-        CoroutineScope(Dispatchers.Main).launch(CoroutineName("with exception") + Dispatchers.Main + coroutineExceptionHandler) {
+         CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch{
             try {
                 val job = launch {
                     retrofitExampleInteractor.getDataFromJson()

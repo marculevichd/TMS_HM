@@ -2,10 +2,7 @@ package com.example.homework21_tms.presentation.view.auth
 
 import android.util.Log
 import com.example.homework21_tms.domain.auth.AuthInteractor
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class OnBoardingPresenter @Inject constructor(
@@ -26,7 +23,7 @@ class OnBoardingPresenter @Inject constructor(
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("Handler", "userLogIn")
         }
-        GlobalScope.launch(Dispatchers.Main + coroutineExceptionHandler) {
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch{
 
             try {
                 onBoardingView.showUserCreds(authInteractor.getUserCreds())
@@ -41,7 +38,7 @@ class OnBoardingPresenter @Inject constructor(
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("Handler", "userLogIn")
         }
-        GlobalScope.launch(Dispatchers.Main + coroutineExceptionHandler) {
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch{
             try {
                 authInteractor.saveIfUserSawOnBoard(boolean)
             } catch (e: Exception) {

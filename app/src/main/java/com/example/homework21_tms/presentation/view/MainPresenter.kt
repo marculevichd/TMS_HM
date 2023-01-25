@@ -18,7 +18,7 @@ class MainPresenter @Inject constructor(
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("Handler", "checkUserExistsAndSawOnboard")
         }
-        GlobalScope.launch(Dispatchers.Main + coroutineExceptionHandler) {
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch {
             mainView.userExistsAndSawOnboard(authInteractor.checkUserExists(), authInteractor.checkShowsOnBoard())
         }
     }

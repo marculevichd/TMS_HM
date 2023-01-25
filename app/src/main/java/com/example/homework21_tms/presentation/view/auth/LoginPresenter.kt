@@ -2,10 +2,7 @@ package com.example.homework21_tms.presentation.view.auth
 
 import android.util.Log
 import com.example.homework21_tms.domain.auth.AuthInteractor
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(
@@ -23,7 +20,7 @@ class LoginPresenter @Inject constructor(
             Log.w("Handler", "userLogIn")
         }
 
-        GlobalScope.launch(Dispatchers.Main + coroutineExceptionHandler) {
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch{
             try {
                 authInteractor.loginUser(userName, userPassword)
             } catch (e: Exception) {
@@ -36,7 +33,7 @@ class LoginPresenter @Inject constructor(
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("Handler", "checkUserSawOnBoard")
         }
-        GlobalScope.launch(Dispatchers.Main + coroutineExceptionHandler) {
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch{
             view.checkOnBoard(authInteractor.checkShowsOnBoard())
         }
     }

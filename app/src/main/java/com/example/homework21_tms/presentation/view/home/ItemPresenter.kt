@@ -3,10 +3,7 @@ package com.example.homework21_tms.presentation.view.home
 import android.util.Log
 import com.example.homework21_tms.R
 import com.example.homework21_tms.domain.home.ItemInteractor
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class ItemPresenter @Inject constructor(
@@ -25,7 +22,7 @@ class ItemPresenter @Inject constructor(
             Log.w("Handler", "getData")
         }
 
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch {
 
             try {
                 val listItems = itemInteractor.getData()
