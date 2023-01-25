@@ -14,7 +14,7 @@ abstract class DataBaseExample : RoomDatabase() {
 
     companion object {
 
-
+        private const val DATABASE_NAME = "response database"
         private var BD_INSTANCE: DataBaseExample? = null
 
         fun getDataBaseExampleInstance(context: Context): DataBaseExample {
@@ -22,7 +22,7 @@ abstract class DataBaseExample : RoomDatabase() {
                 .databaseBuilder(
                     context.applicationContext,
                     DataBaseExample::class.java,
-                    "BD_EXAMPLE"
+                    DATABASE_NAME
                 )
                 .build()
                 .also { BD_INSTANCE = it }

@@ -11,13 +11,12 @@ import javax.inject.Inject
 class RetrofitExampleRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val dataBaseExampleDAO: DataBaseExampleDAO
-) :
-    RetrofitExampleRepository {
+) : RetrofitExampleRepository {
 
     override suspend fun getDataFromJson() {
         return withContext(Dispatchers.IO) {
 
-            if (dataBaseExampleDAO.doesDataBaseExampleEntityExist()) {
+            if (!dataBaseExampleDAO.doesDataBaseExampleEntityExist()) {
 
                 val response = apiService.getDataFromJson()
 

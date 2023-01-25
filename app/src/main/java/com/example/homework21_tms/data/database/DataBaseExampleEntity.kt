@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity("DataBaseExampleEntity")
+@Entity("dataBaseExampleEntity")
 data class DataBaseExampleEntity(
 
     @PrimaryKey(autoGenerate = false)

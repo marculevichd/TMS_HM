@@ -12,10 +12,10 @@ interface DataBaseExampleDAO {
     @Insert
     fun insertDataBaseExampleEntity(dataBaseExampleEntity: DataBaseExampleEntity)
 
-    @Query("SELECT * FROM DataBaseExampleEntity")
+    @Query("SELECT * FROM dataBaseExampleEntity")
     fun getDataBaseExampleEntities(): List<DataBaseExampleEntity>
 
-    @Query("SELECT (SELECT COUNT(*) FROM DataBaseExampleEntity) !=0")
+    @Query("SELECT(SELECT COUNT(*) FROM dataBaseExampleEntity) !=0")
     fun doesDataBaseExampleEntityExist(): Boolean
 
 }
