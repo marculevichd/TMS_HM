@@ -21,11 +21,12 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         CoroutineScope(Dispatchers.Main).launch(CoroutineName("with exception") + Dispatchers.Main + coroutineExceptionHandler) {
             try {
                 val job = launch {
-                    val retrofitExampleList = retrofitExampleInteractor.getDataFromJson()
-                    view.getDataFromJson(retrofitExampleList)
+                    retrofitExampleInteractor.getDataFromJson()
+                    val list = retrofitExampleInteractor.showDataFromDataBase()
+                    view.showData(list)
                 }
             } catch (e: Exception) {
-                Log.w("exception", "list items FAILED")
+                Log.w("exception", "list FAILED")
             }
         }
     }

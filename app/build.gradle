@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.example.homework21_tms'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.homework21_tms"
-        minSdk 21
-        targetSdk 32
+        minSdk 30
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -51,7 +51,7 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
-    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
 
     //Hilt
     kapt 'com.google.dagger:hilt-android-compiler:2.43.2'
@@ -69,8 +69,14 @@ dependencies {
 
     // конвертер gson работа с сетью
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // picasso работа с сетью
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //data base room
+    kapt "androidx.room:room-compiler:2.5.0"
+    implementation "androidx.room:room-runtime:2.5.0"
+    implementation "androidx.room:room-ktx:2.5.0"
 
 }

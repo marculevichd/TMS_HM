@@ -5,8 +5,13 @@ import javax.inject.Inject
 
 class RetrofitExampleInteractor @Inject constructor(private val retrofitExampleRepository: RetrofitExampleRepository) {
 
-    suspend fun getDataFromJson(): List<RetrofitExampleModel> {
+    suspend fun getDataFromJson() {
         return retrofitExampleRepository.getDataFromJson()
     }
+
+    suspend fun showDataFromDataBase():List<RetrofitExampleModel>{
+        return retrofitExampleRepository.showDataFromDataBase()
+    }
+
 
 }

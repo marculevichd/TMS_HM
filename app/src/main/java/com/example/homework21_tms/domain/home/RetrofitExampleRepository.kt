@@ -4,6 +4,8 @@ import com.example.homework21_tms.domain.model.RetrofitExampleModel
 
 interface RetrofitExampleRepository {
 
-    suspend fun getDataFromJson(): List<RetrofitExampleModel>
+    suspend fun getDataFromJson()
+
+    suspend fun showDataFromDataBase():List<RetrofitExampleModel>
 
 }

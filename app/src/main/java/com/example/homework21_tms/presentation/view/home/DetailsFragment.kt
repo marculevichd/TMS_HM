@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.presentation.view.auth.LoginFragment
@@ -51,7 +52,10 @@ class DetailsFragment : Fragment(), DetailsView {
     }
 
     override fun userLogOut() {
-        replaceGraph(R.navigation.auth_graph)
+        val navGraph = findNavController().navInflater.inflate(R.navigation.auth_graph)
+        navGraph.setStartDestination(R.id.loginFragment)
+        findNavController().graph = navGraph
+//        replaceGraph(R.navigation.auth_graph)
     }
 
     override fun showDetailInfo(title: String, description: Int, time: String, image: Int) {

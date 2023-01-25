@@ -45,9 +45,8 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView {
 
     }
 
-
-    override fun getDataFromJson(retrofitExampleList: List<RetrofitExampleModel>) {
-            retrofitExampleAdapter.submitList(retrofitExampleList)
+    override fun showData(list:List<RetrofitExampleModel>) {
+            retrofitExampleAdapter.submitList(list)
     }
 
 }
