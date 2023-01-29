@@ -43,6 +43,12 @@ class HomeFragment : Fragment(), HomeView {
         viewBinding.goToRetrofitFragment.setOnClickListener {
             navigate(R.id.action_homeFragment_to_retrofitExampleFragment)
         }
+
+        viewBinding.button2.setOnClickListener{
+            navigate(R.id.action_homeFragment_to_faveFragment)
+        }
+
+
     }
 
 }

@@ -3,10 +3,12 @@ package com.example.homework21_tms.presentation.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework21_tms.databinding.ItemUsersFromJsonBinding
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
+import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleListener
 
 class RetrofitExampleViewHolder(
     private val viewBinding: ItemUsersFromJsonBinding,
-) : RecyclerView.ViewHolder(viewBinding.root) {
+    private val retrofitExampleListener: RetrofitExampleListener,
+    ) : RecyclerView.ViewHolder(viewBinding.root) {
 
 
     fun bind(retrofitExampleModel: RetrofitExampleModel) {
@@ -25,5 +27,16 @@ class RetrofitExampleViewHolder(
         viewBinding.tvCompanyName.text = retrofitExampleModel.companyName
         viewBinding.tvCatchPhrase.text = retrofitExampleModel.companyCatchPhrase
         viewBinding.tvBS.text = retrofitExampleModel.companyBs
+
+        viewBinding.addFave.setOnClickListener{
+            retrofitExampleListener.onFavImageClicked(retrofitExampleModel.id)
+        }
+
+
     }
+
+
+
+
+
 }

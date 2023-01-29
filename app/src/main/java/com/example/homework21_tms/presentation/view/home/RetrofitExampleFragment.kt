@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework21_tms.databinding.FragmentRetrofitExampleBinding
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
 import com.example.homework21_tms.presentation.adapter.RetrofitExampleAdapter
+import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RetrofitExampleFragment : Fragment(), RetrofitExampleView {
+class RetrofitExampleFragment : Fragment(), RetrofitExampleView, RetrofitExampleListener {
 
     private var _viewBinding: FragmentRetrofitExampleBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -37,7 +38,7 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView {
 
         retrofitExamplePresenter.setView(this)
 
-        retrofitExampleAdapter = RetrofitExampleAdapter()
+        retrofitExampleAdapter = RetrofitExampleAdapter(this)
         viewBinding.recyclerViewUsers.adapter = retrofitExampleAdapter
         viewBinding.recyclerViewUsers.layoutManager = LinearLayoutManager(context)
 
@@ -47,6 +48,9 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView {
 
     override fun showData(list:List<RetrofitExampleModel>) {
             retrofitExampleAdapter.submitList(list)
+    }
+    override fun onFavImageClicked(id: Int) {
+        retrofitExamplePresenter.onFavImageClicked(id)
     }
 
 }

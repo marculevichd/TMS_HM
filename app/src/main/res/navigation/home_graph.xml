@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_homeFragment_to_retrofitExampleFragment"
             app:destination="@id/retrofitExampleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_faveFragment"
+            app:destination="@id/faveFragment" />
     </fragment>
     <fragment
         android:id="@+id/retrofitExampleFragment"

@@ -16,6 +16,7 @@
         android:background="@color/teal_700">
 
 
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvEmail"
             android:layout_width="match_parent"
@@ -249,6 +250,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.852" />
+
+        <ImageView
+            android:id="@+id/addFave"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvCompanyName"
+            app:layout_constraintEnd_toStartOf="@+id/tvLat"
+            app:layout_constraintStart_toEndOf="@+id/tvStreet"
+            app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

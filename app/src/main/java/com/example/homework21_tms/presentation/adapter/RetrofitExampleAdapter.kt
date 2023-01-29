@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework21_tms.databinding.ItemUsersFromJsonBinding
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
+import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleListener
 
-class RetrofitExampleAdapter: RecyclerView.Adapter<RetrofitExampleViewHolder>(){
+class RetrofitExampleAdapter(
+    private val retrofitExampleListener: RetrofitExampleListener,
+) : RecyclerView.Adapter<RetrofitExampleViewHolder>() {
 
     private var listUser = mutableListOf<RetrofitExampleModel>()
 
@@ -18,9 +21,10 @@ class RetrofitExampleAdapter: RecyclerView.Adapter<RetrofitExampleViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitExampleViewHolder {
-        val viewBinding = ItemUsersFromJsonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val viewBinding =
+            ItemUsersFromJsonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return RetrofitExampleViewHolder(viewBinding)
+        return RetrofitExampleViewHolder(viewBinding, retrofitExampleListener)
     }
 
     override fun onBindViewHolder(holder: RetrofitExampleViewHolder, position: Int) {

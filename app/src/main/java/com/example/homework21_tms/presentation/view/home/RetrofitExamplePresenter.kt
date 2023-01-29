@@ -14,11 +14,11 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         view = retrofitExampleFragment
     }
 
-     fun getDataFromJson() {
+    fun getDataFromJson() {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exceptionHandler called", exception.toString())
         }
-         CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch{
+        CoroutineScope(Dispatchers.Main + coroutineExceptionHandler).launch {
             try {
                 val job = launch {
                     retrofitExampleInteractor.getDataFromJson()
@@ -31,8 +31,13 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         }
     }
 
-
-
-
-
+    fun onFavImageClicked(id: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                retrofitExampleInteractor.onFavClicked(id)
+            } catch (e: Exception) {
+                Log.w("exception", "list FAILED")
+            }
+        }
+    }
 }

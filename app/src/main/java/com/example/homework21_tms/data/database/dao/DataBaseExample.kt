@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.homework21_tms.data.database.DataBaseExampleEntity
+import com.example.homework21_tms.data.database.FaveEntity
 
 
-@Database(entities = [DataBaseExampleEntity::class], version = 1, exportSchema = false)
+@Database(entities = [DataBaseExampleEntity::class, FaveEntity::class], version = 1, exportSchema = false)
 abstract class DataBaseExample : RoomDatabase() {
 
     abstract fun getDataBaseExampleDAO(): DataBaseExampleDAO

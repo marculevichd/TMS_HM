@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        actionBar?.setDisplayHomeAsUpEnabled(false)
+//        actionBar?.setDisplayHomeAsUpEnabled(false)
 
         mainPresenter.setView(this)
 
@@ -51,12 +51,6 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         navController.addOnDestinationChangedListener(this)
 
         binding.bottomNavigation.setupWithNavController(navController)
-
-        val btnav = AppBarConfiguration(
-            setOf(R.id.onBoardingFragment, R.id.itemsFragment)
-        )
-
-        NavigationUI.setupActionBarWithNavController(this, navController, btnav)
 
     }
 
@@ -90,8 +84,6 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
             } else {
                 binding.bottomNavigation.visibility = View.VISIBLE
             }
-
-
     }
 
 
