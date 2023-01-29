@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/faveFragment"
+        android:title="peopleFave"
+        android:icon="@drawable/people_fave"
+        />
+    <item
+        android:id="@+id/retrofitExampleFragment"
+        android:title="people"
+        android:icon="@drawable/people"
+        />
+    <item
+        android:id="@+id/itemsFragment"
+        android:title="film"
+        android:icon="@drawable/tv"
+        />
+</menu>

@@ -1,6 +1,7 @@
 package com.example.homework21_tms.presentation.view
 
 import android.util.Log
+import androidx.navigation.NavDestination
 import com.example.homework21_tms.domain.auth.AuthInteractor
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -22,4 +23,9 @@ class MainPresenter @Inject constructor(
             mainView.userExistsAndSawOnboard(authInteractor.checkUserExists(), authInteractor.checkShowsOnBoard())
         }
     }
+
+    fun statusVisibility(destination: NavDestination){
+        mainView.setStatusVisibility(destination)
+    }
+
 }
