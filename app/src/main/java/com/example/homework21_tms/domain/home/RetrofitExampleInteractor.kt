@@ -23,6 +23,8 @@ class RetrofitExampleInteractor @Inject constructor(private val retrofitExampleR
         return retrofitExampleRepository.getFavorites()
     }
 
-
+    suspend fun findItemById(id: Int): RetrofitExampleModel {
+        return retrofitExampleRepository.findItemById(id)
+    }
 
 }

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
@@ -36,7 +38,6 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-//        actionBar?.setDisplayHomeAsUpEnabled(false)
 
         mainPresenter.setView(this)
 
@@ -48,9 +49,9 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         mainPresenter.checkUserExistsAndSawOnboard()
 
 // боттом навигейшен
-        navController.addOnDestinationChangedListener(this)
-
         binding.bottomNavigation.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener(this)
 
     }
 
@@ -71,34 +72,25 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
                 }
             }
         }
+
     }
-
-
-
-    // боттом навигейшен
 
     override fun setStatusVisibility(destination: NavDestination) {
+        if (destination.id == R.id.loginFragment || destination.id == R.id.onBoardingFragment) {
+            binding.bottomNavigation.visibility = View.GONE
+        } else {
+            binding.bottomNavigation.visibility = View.VISIBLE
+        }
 
-            if (destination.id == R.id.loginFragment || destination.id == R.id.onBoardingFragment) {
-                binding.bottomNavigation.visibility = View.GONE
-            } else {
-                binding.bottomNavigation.visibility = View.VISIBLE
-            }
+
     }
-
-
 
     override fun onDestinationChanged(
         controller: NavController,
         destination: NavDestination,
         arguments: Bundle?
     ) {
-        mainPresenter.statusVisibility(destination)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        navController.removeOnDestinationChangedListener(this)
+        mainPresenter.setStatusVisibility(destination)
     }
 
 

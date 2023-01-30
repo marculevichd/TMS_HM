@@ -24,7 +24,7 @@ class MainPresenter @Inject constructor(
         }
     }
 
-    fun statusVisibility(destination: NavDestination){
+    fun setStatusVisibility(destination: NavDestination){
         mainView.setStatusVisibility(destination)
     }
 
