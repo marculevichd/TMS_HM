@@ -1,6 +1,7 @@
 package com.example.homework21_tms.data.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.IGNORE
 import androidx.room.Query
@@ -30,5 +31,8 @@ interface DataBaseExampleDAO {
     @Query("SELECT * FROM dataBaseExampleEntity WHERE idElem =:searchId")
     fun findItemEntityById(searchId: Int): DataBaseExampleEntity
 
+
+    @Query("DELETE FROM faveEntity WHERE idElem =:searchId")
+    fun deleteItemFromFaveEntity(searchId: Int)
 
 }

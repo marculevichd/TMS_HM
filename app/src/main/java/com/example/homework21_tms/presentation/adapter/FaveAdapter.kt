@@ -6,8 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.homework21_tms.databinding.FragmentFaveBinding
 import com.example.homework21_tms.databinding.ItemFaveBinding
 import com.example.homework21_tms.domain.model.FaveModel
+import com.example.homework21_tms.presentation.adapter.listener.FaveListener
+import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleListener
 
-class FaveAdapter : RecyclerView.Adapter<FaveViewHolder>() {
+class FaveAdapter(
+    private val faveListener: FaveListener
+    ) : RecyclerView.Adapter<FaveViewHolder>() {
 
     private var listItems = mutableListOf<FaveModel>()
 
@@ -21,7 +25,7 @@ class FaveAdapter : RecyclerView.Adapter<FaveViewHolder>() {
         val binding = ItemFaveBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return FaveViewHolder(binding)
+        return FaveViewHolder(binding, faveListener)
     }
 
     override fun onBindViewHolder(holder: FaveViewHolder, position: Int) {

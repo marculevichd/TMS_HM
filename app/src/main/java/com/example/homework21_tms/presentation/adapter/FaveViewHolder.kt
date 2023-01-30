@@ -3,10 +3,12 @@ package com.example.homework21_tms.presentation.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework21_tms.databinding.ItemFaveBinding
 import com.example.homework21_tms.domain.model.FaveModel
+import com.example.homework21_tms.presentation.adapter.listener.FaveListener
 
 class FaveViewHolder(
-    private val viewBinding: ItemFaveBinding
-) : RecyclerView.ViewHolder(viewBinding.root) {
+    private val viewBinding: ItemFaveBinding,
+    private val faveListener: FaveListener
+    ) : RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(faveModel: FaveModel) {
         viewBinding.tvID.text = faveModel.id.toString()
@@ -24,6 +26,10 @@ class FaveViewHolder(
         viewBinding.tvCompanyName.text = faveModel.companyName
         viewBinding.tvCatchPhrase.text = faveModel.companyCatchPhrase
         viewBinding.tvBS.text = faveModel.companyBs
+
+        viewBinding.delFave.setOnClickListener{
+            faveListener.onFavImageClickedDel(faveModel.id)
+        }
     }
 
 }

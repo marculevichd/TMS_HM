@@ -32,4 +32,9 @@ class RetrofitExampleInteractor @Inject constructor(private val retrofitExampleR
         return retrofitExampleRepository.findItemById(id)
     }
 
+    suspend fun deleteItemById(id: Int) {
+        retrofitExampleRepository.deleteItemFromFaveEntity(id)
+    }
+
+
 }

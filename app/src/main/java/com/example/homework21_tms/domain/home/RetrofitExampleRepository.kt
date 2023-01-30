@@ -15,4 +15,8 @@ interface RetrofitExampleRepository {
 
     suspend fun  findItemById(searchText: Int): RetrofitExampleModel
 
+    suspend fun  deleteItemFromFaveEntity(id: Int)
+
+
+
 }

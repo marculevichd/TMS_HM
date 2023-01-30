@@ -15,6 +15,14 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
     private val dataBaseExampleDAO: DataBaseExampleDAO
 ) : RetrofitExampleRepository {
 
+
+    override suspend fun deleteItemFromFaveEntity(id:Int) {
+        withContext(Dispatchers.IO) {
+            dataBaseExampleDAO.deleteItemFromFaveEntity(id)
+        }
+    }
+
+
     override suspend fun getDataFromJson() {
         return withContext(Dispatchers.IO) {
 
@@ -146,10 +154,6 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
             )
         }
     }
-
-
-
-
 
 
 }

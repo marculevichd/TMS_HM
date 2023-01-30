@@ -19,10 +19,20 @@ class FavePresenter @Inject constructor(private val retrofitExampleInteractor: R
     fun getFavorites() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-               val list =  retrofitExampleInteractor.getFavorites()
+                val list = retrofitExampleInteractor.getFavorites()
                 view.getFavorites(list)
             } catch (e: java.lang.Exception) {
                 Log.w("getFavorites", e.message.toString())
+            }
+        }
+    }
+
+    fun favCklickedDel(id: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                retrofitExampleInteractor.deleteItemById(id)
+            } catch (e: java.lang.Exception) {
+                Log.w("favCklickedDel", e.message.toString())
             }
         }
     }

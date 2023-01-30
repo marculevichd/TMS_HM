@@ -11,12 +11,13 @@ import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.databinding.FragmentFaveBinding
 import com.example.homework21_tms.domain.model.FaveModel
 import com.example.homework21_tms.presentation.adapter.FaveAdapter
+import com.example.homework21_tms.presentation.adapter.listener.FaveListener
 import com.example.homework21_tms.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FaveFragment : Fragment(), FaveView {
+class FaveFragment : Fragment(), FaveView, FaveListener {
 
 
     private var _viewBinding: FragmentFaveBinding? = null
@@ -42,7 +43,7 @@ class FaveFragment : Fragment(), FaveView {
         favePresenter.setView(this)
 
 
-        faveAdapter = FaveAdapter()
+        faveAdapter = FaveAdapter(this)
         viewBinding.recyclerViewFaves.layoutManager = LinearLayoutManager(requireContext())
         viewBinding.recyclerViewFaves.adapter = faveAdapter
 
@@ -57,6 +58,10 @@ class FaveFragment : Fragment(), FaveView {
 
     override suspend fun getFavorites(list: List<FaveModel>) {
         faveAdapter.submitList(list)
+    }
+
+    override fun onFavImageClickedDel(id: Int) {
+        favePresenter.favCklickedDel(id)
     }
 
 }
