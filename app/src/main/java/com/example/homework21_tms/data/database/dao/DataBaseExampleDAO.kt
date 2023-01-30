@@ -27,7 +27,7 @@ interface DataBaseExampleDAO {
     @Query("SELECT * FROM faveEntity")
     fun getFaveEntities(): List<FaveEntity>
 
-    @Query("SELECT * FROM faveEntity WHERE idElem =:searchId")
+    @Query("SELECT * FROM dataBaseExampleEntity WHERE idElem =:searchId")
     fun findItemEntityById(searchId: Int): DataBaseExampleEntity
 
 

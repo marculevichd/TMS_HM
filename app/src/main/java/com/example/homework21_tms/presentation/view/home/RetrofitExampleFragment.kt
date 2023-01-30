@@ -1,6 +1,7 @@
 package com.example.homework21_tms.presentation.view.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +52,7 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView, RetrofitExample
     }
     override fun onFavImageClicked(id: Int) {
         retrofitExamplePresenter.onFavImageClicked(id)
+        Log.w("retrofit ex fragment", id.toString() )
     }
 
 }

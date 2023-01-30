@@ -35,6 +35,8 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 retrofitExampleInteractor.onFavClicked(id)
+                Log.w("презентер", id.toString() )
+
             } catch (e: Exception) {
                 Log.w("exception", "list FAILED")
             }
