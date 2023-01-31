@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.homework21_tms.domain.home.RetrofitExampleInteractor
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleInteractor: RetrofitExampleInteractor) {
@@ -23,7 +24,9 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
                 val job = launch {
                     retrofitExampleInteractor.getDataFromJson()
                     val list = retrofitExampleInteractor.showDataFromDataBase()
-                    view.showData(list)
+                    list.collect {
+                        view.showData(it)
+                    }
                 }
             } catch (e: Exception) {
                 Log.w("exception", "list FAILED")
@@ -35,11 +38,21 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 retrofitExampleInteractor.onFavClicked(id)
-                Log.w("презентер", id.toString() )
-
             } catch (e: Exception) {
                 Log.w("exception", "list FAILED")
             }
         }
     }
+
+    fun onDeleteImageClicked(id: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                retrofitExampleInteractor.onDeleteImageClicked(id)
+            } catch (e: Exception) {
+                Log.w("exception", "list FAILED")
+            }
+        }
+    }
+
+
 }

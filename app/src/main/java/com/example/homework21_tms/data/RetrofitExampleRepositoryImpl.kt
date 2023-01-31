@@ -7,6 +7,8 @@ import com.example.homework21_tms.domain.home.RetrofitExampleRepository
 import com.example.homework21_tms.domain.model.FaveModel
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -16,9 +18,15 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
 ) : RetrofitExampleRepository {
 
 
-    override suspend fun deleteItemFromFaveEntity(id:Int) {
+    override suspend fun deleteItemFromFaveEntity(id: Int) {
         withContext(Dispatchers.IO) {
             dataBaseExampleDAO.deleteItemFromFaveEntity(id)
+        }
+    }
+
+    override suspend fun deleteItemFromDataBaseExampleEntity(id: Int) {
+        withContext(Dispatchers.IO) {
+            dataBaseExampleDAO.deleteItemFromDataBaseExampleEntity(id)
         }
     }
 
@@ -57,27 +65,29 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun showDataFromDataBase(): List<RetrofitExampleModel> {
+    override suspend fun showDataFromDataBase(): Flow<List<RetrofitExampleModel>> {
         return withContext(Dispatchers.IO) {
             val dataBaseExampleEntity = dataBaseExampleDAO.getDataBaseExampleEntities()
             dataBaseExampleEntity.map {
-                RetrofitExampleModel(
-                    it.idElem,
-                    it.name,
-                    it.username,
-                    it.email,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.lat,
-                    it.lng,
-                    it.phone,
-                    it.website,
-                    it.companyName,
-                    it.catchPhrase,
-                    it.bs
-                )
+                it.map {
+                    RetrofitExampleModel(
+                        it.idElem,
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.lat,
+                        it.lng,
+                        it.phone,
+                        it.website,
+                        it.companyName,
+                        it.catchPhrase,
+                        it.bs
+                    )
+                }
             }
         }
     }
@@ -107,27 +117,29 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun getFavorites(): List<FaveModel> {
+    override suspend fun getFavorites(): Flow<List<FaveModel>> {
         return withContext(Dispatchers.IO) {
             val fave = dataBaseExampleDAO.getFaveEntities()
             fave.map {
-                FaveModel(
-                    it.idElem,
-                    it.name,
-                    it.username,
-                    it.email,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.lat,
-                    it.lng,
-                    it.phone,
-                    it.website,
-                    it.companyName,
-                    it.catchPhrase,
-                    it.bs
-                )
+                it.map {
+                    FaveModel(
+                        it.idElem,
+                        it.name,
+                        it.username,
+                        it.email,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.lat,
+                        it.lng,
+                        it.phone,
+                        it.website,
+                        it.companyName,
+                        it.catchPhrase,
+                        it.bs
+                    )
+                }
             }
         }
     }

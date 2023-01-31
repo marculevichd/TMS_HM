@@ -52,7 +52,10 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView, RetrofitExample
     }
     override fun onFavImageClicked(id: Int) {
         retrofitExamplePresenter.onFavImageClicked(id)
-        Log.w("retrofit ex fragment", id.toString() )
+    }
+
+    override fun onDeleteImageClicked(id: Int) {
+        retrofitExamplePresenter.onDeleteImageClicked(id)
     }
 
 }

@@ -251,6 +251,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.852" />
 
+
         <ImageView
             android:id="@+id/addFave"
             android:layout_width="50dp"
@@ -263,7 +264,20 @@
             app:layout_constraintEnd_toStartOf="@+id/tvLat"
             app:layout_constraintStart_toEndOf="@+id/tvStreet"
             app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+        <ImageView
+            android:id="@+id/delItem"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvCatchPhrase"
+            app:layout_constraintTop_toBottomOf="@+id/tvCompanyName"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

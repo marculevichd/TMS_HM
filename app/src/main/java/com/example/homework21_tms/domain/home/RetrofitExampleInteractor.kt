@@ -3,6 +3,7 @@ package com.example.homework21_tms.domain.home
 import android.util.Log
 import com.example.homework21_tms.domain.model.FaveModel
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RetrofitExampleInteractor @Inject constructor(private val retrofitExampleRepository: RetrofitExampleRepository) {
@@ -11,25 +12,25 @@ class RetrofitExampleInteractor @Inject constructor(private val retrofitExampleR
         return retrofitExampleRepository.getDataFromJson()
     }
 
-    suspend fun showDataFromDataBase():List<RetrofitExampleModel>{
+    suspend fun showDataFromDataBase(): Flow<List<RetrofitExampleModel>> {
         return retrofitExampleRepository.showDataFromDataBase()
     }
 
-    suspend fun onFavClicked (searchText:Int){
-        val model = retrofitExampleRepository.findItemById(searchText )
-        Log.w("интерактор функция файнд", model.toString() )
-
+    suspend fun onFavClicked(searchText: Int) {
+        val model = retrofitExampleRepository.findItemById(searchText)
         retrofitExampleRepository.favClicked(model)
-        Log.w("интерактор ф фав клик", model.toString() )
-
     }
 
-    suspend fun getFavorites(): List<FaveModel>{
+    suspend fun getFavorites(): Flow<List<FaveModel>> {
         return retrofitExampleRepository.getFavorites()
     }
 
     suspend fun findItemById(id: Int): RetrofitExampleModel {
         return retrofitExampleRepository.findItemById(id)
+    }
+
+    suspend fun onDeleteImageClicked(id: Int) {
+        retrofitExampleRepository.deleteItemFromDataBaseExampleEntity(id)
     }
 
     suspend fun deleteItemById(id: Int) {

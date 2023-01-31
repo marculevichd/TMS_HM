@@ -32,6 +32,9 @@ class RetrofitExampleViewHolder(
             retrofitExampleListener.onFavImageClicked(retrofitExampleModel.id)
         }
 
+        viewBinding.delItem.setOnClickListener{
+            retrofitExampleListener.onDeleteImageClicked(retrofitExampleModel.id)
+        }
 
     }
 

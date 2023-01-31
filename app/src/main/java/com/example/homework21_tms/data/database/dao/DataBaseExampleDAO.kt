@@ -8,6 +8,7 @@ import androidx.room.Query
 import com.example.homework21_tms.data.database.DataBaseExampleEntity
 import com.example.homework21_tms.data.database.FaveEntity
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -17,7 +18,7 @@ interface DataBaseExampleDAO {
     fun insertDataBaseExampleEntity(dataBaseExampleEntity: DataBaseExampleEntity)
 
     @Query("SELECT * FROM dataBaseExampleEntity")
-    fun getDataBaseExampleEntities(): List<DataBaseExampleEntity>
+    fun getDataBaseExampleEntities(): Flow<List<DataBaseExampleEntity>>
 
     @Query("SELECT(SELECT COUNT(*) FROM dataBaseExampleEntity) !=0")
     fun doesDataBaseExampleEntityExist(): Boolean
@@ -26,11 +27,13 @@ interface DataBaseExampleDAO {
     fun insertFaveEntity(faveEntity: FaveEntity)
 
     @Query("SELECT * FROM faveEntity")
-    fun getFaveEntities(): List<FaveEntity>
+    fun getFaveEntities(): Flow<List<FaveEntity>>
 
     @Query("SELECT * FROM dataBaseExampleEntity WHERE idElem =:searchId")
     fun findItemEntityById(searchId: Int): DataBaseExampleEntity
 
+    @Query("DELETE FROM dataBaseExampleEntity WHERE idElem =:searchId")
+    fun deleteItemFromDataBaseExampleEntity(searchId: Int)
 
     @Query("DELETE FROM faveEntity WHERE idElem =:searchId")
     fun deleteItemFromFaveEntity(searchId: Int)
