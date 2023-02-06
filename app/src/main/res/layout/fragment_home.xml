@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.view.home.HomeFragment">
 
+
     <TextView
         android:id="@+id/home_textView"
         android:layout_width="wrap_content"
@@ -13,8 +14,20 @@
         android:text="@string/home_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
+    <TextView
+        android:id="@+id/home_textView_for_Workmanager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_textView"
+        app:layout_constraintVertical_bias="0.198" />
 
     <Button
         android:id="@+id/go_to_items_fragment"

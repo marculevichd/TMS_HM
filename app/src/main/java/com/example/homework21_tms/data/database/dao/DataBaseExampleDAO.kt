@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy.Companion.IGNORE
 import androidx.room.Query
 import com.example.homework21_tms.data.database.DataBaseExampleEntity
 import com.example.homework21_tms.data.database.FaveEntity
+import com.example.homework21_tms.data.database.WorkManagerEntity
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
 import kotlinx.coroutines.flow.Flow
 
@@ -37,5 +38,13 @@ interface DataBaseExampleDAO {
 
     @Query("DELETE FROM faveEntity WHERE idElem =:searchId")
     fun deleteItemFromFaveEntity(searchId: Int)
+
+    // funs for workManager
+    @Insert
+    fun insertStringWorkManagerEntity(workManagerEntity: WorkManagerEntity)
+
+    @Query("SELECT * FROM workManagerEntity")
+    fun getStringFromWorkManagerEntity(): WorkManagerEntity
+
 
 }

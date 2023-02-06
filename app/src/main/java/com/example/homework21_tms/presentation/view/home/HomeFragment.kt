@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentDetailsBinding
 import com.example.homework21_tms.databinding.FragmentHomeBinding
+import com.example.homework21_tms.domain.model.WorkManagerModel
 import com.example.homework21_tms.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -44,11 +45,15 @@ class HomeFragment : Fragment(), HomeView {
             navigate(R.id.action_homeFragment_to_retrofitExampleFragment)
         }
 
-        viewBinding.button2.setOnClickListener{
+        viewBinding.button2.setOnClickListener {
             navigate(R.id.action_homeFragment_to_faveFragment)
         }
 
 
+    }
+
+    override fun showStringData(string: WorkManagerModel) {
+        viewBinding.homeTextViewForWorkmanager.text = string.string
     }
 
 }

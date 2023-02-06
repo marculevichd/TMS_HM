@@ -1,6 +1,7 @@
 package com.example.homework21_tms.domain.auth
 
 import com.example.homework21_tms.domain.model.UserModel
+import com.example.homework21_tms.domain.model.WorkManagerModel
 
 interface AuthRepository {
 
@@ -15,4 +16,9 @@ interface AuthRepository {
     suspend fun saveIfUserSawOnBoard(bool: Boolean)
 
     suspend fun checkShowsOnBoard(): Boolean
+
+    suspend fun getStringWorkManager(): WorkManagerModel
+
+    suspend fun saveStringWorkManager(string: WorkManagerModel)
+
 }

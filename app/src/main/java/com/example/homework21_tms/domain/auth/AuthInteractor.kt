@@ -1,6 +1,7 @@
 package com.example.homework21_tms.domain.auth
 
 import com.example.homework21_tms.domain.model.UserModel
+import com.example.homework21_tms.domain.model.WorkManagerModel
 import javax.inject.Inject
 
 class AuthInteractor @Inject constructor(private val authRepository: AuthRepository) {
@@ -28,6 +29,10 @@ class AuthInteractor @Inject constructor(private val authRepository: AuthReposit
 
     suspend fun checkShowsOnBoard(): Boolean{
         return authRepository.checkShowsOnBoard()
+    }
+
+    suspend fun getStringWorkManager(): WorkManagerModel {
+        return authRepository.getStringWorkManager()
     }
 
 }
