@@ -47,11 +47,18 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView, RetrofitExample
 
     }
 
-    override fun showData(list:List<RetrofitExampleModel>) {
-            retrofitExampleAdapter.submitList(list)
+    override fun showData(list: List<RetrofitExampleModel>) {
+        retrofitExampleAdapter.submitList(list)
     }
-    override fun onFavImageClicked(id: Int) {
-        retrofitExamplePresenter.onFavImageClicked(id)
+
+    override fun onFavImageClicked(id: Int, status: Boolean) {
+        if (status==true) {
+            retrofitExamplePresenter.onFavImageClicked(id, status)
+        } else if (status == false) {
+            retrofitExamplePresenter.deleteFaveFromFaveBD(id)
+            retrofitExamplePresenter.onFavImageClicked(id, status)
+        }
+
     }
 
     override fun onDeleteImageClicked(id: Int) {

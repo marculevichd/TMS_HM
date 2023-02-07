@@ -16,5 +16,6 @@ data class RetrofitExampleModel(
     val website: String,
     val companyName: String,
     val companyCatchPhrase: String,
-    val companyBs: String
+    val companyBs: String,
+    val isSelected: Boolean
 )

@@ -34,13 +34,22 @@ class RetrofitExamplePresenter @Inject constructor(private val retrofitExampleIn
         }
     }
 
-    fun onFavImageClicked(id: Int) {
+    fun onFavImageClicked(id: Int, status: Boolean) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                retrofitExampleInteractor.onFavClicked(id)
+                retrofitExampleInteractor.updateItemById(id, status)
+                if(status==true){
+                    retrofitExampleInteractor.onFavClicked(id)
+                }
             } catch (e: Exception) {
                 Log.w("exception", "list FAILED")
             }
+        }
+    }
+
+    fun deleteFaveFromFaveBD(id: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            retrofitExampleInteractor.deleteItemById(id)
         }
     }
 

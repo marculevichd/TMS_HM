@@ -14,10 +14,12 @@ interface RetrofitExampleRepository {
 
     suspend fun getFavorites(): Flow<List<FaveModel>>
 
-    suspend fun  findItemById(searchText: Int): RetrofitExampleModel
+    suspend fun findItemById(searchText: Int): RetrofitExampleModel
 
-    suspend fun  deleteItemFromFaveEntity(id: Int)
+    suspend fun deleteItemFromFaveEntity(id: Int)
 
-    suspend fun  deleteItemFromDataBaseExampleEntity(id: Int)
+    suspend fun deleteItemFromDataBaseExampleEntity(id: Int)
+
+    suspend fun updateItemById(id: Int, status: Boolean)
 
 }

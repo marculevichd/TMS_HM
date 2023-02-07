@@ -55,7 +55,8 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
                             it.website,
                             it.company.name,
                             it.company.catchPhrase,
-                            it.company.bs
+                            it.company.bs,
+                            false
                         )
                         dataBaseExampleDAO.insertDataBaseExampleEntity(dataBaseExampleEntity)
                     }
@@ -85,7 +86,8 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
                         it.website,
                         it.companyName,
                         it.catchPhrase,
-                        it.bs
+                        it.bs,
+                        it.isSelected
                     )
                 }
             }
@@ -110,7 +112,8 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
                     retrofitExampleModel.website,
                     retrofitExampleModel.companyName,
                     retrofitExampleModel.companyCatchPhrase,
-                    retrofitExampleModel.companyBs
+                    retrofitExampleModel.companyBs,
+                    retrofitExampleModel.isSelected
                 )
             )
         }
@@ -137,7 +140,8 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
                         it.website,
                         it.companyName,
                         it.catchPhrase,
-                        it.bs
+                        it.bs,
+                        it.isSelected
                     )
                 }
             }
@@ -162,8 +166,15 @@ class RetrofitExampleRepositoryImpl @Inject constructor(
                 model.website,
                 model.companyName,
                 model.catchPhrase,
-                model.bs
+                model.bs,
+                model.isSelected
             )
+        }
+    }
+
+    override suspend fun updateItemById(id: Int, status: Boolean) {
+        withContext(Dispatchers.IO) {
+            dataBaseExampleDAO.updateStatusSelectedInItem(id, status)
         }
     }
 

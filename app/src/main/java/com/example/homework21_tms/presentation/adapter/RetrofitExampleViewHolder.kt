@@ -1,6 +1,7 @@
 package com.example.homework21_tms.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.ItemUsersFromJsonBinding
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
 import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleListener
@@ -8,7 +9,7 @@ import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleL
 class RetrofitExampleViewHolder(
     private val viewBinding: ItemUsersFromJsonBinding,
     private val retrofitExampleListener: RetrofitExampleListener,
-    ) : RecyclerView.ViewHolder(viewBinding.root) {
+) : RecyclerView.ViewHolder(viewBinding.root) {
 
 
     fun bind(retrofitExampleModel: RetrofitExampleModel) {
@@ -27,19 +28,23 @@ class RetrofitExampleViewHolder(
         viewBinding.tvCompanyName.text = retrofitExampleModel.companyName
         viewBinding.tvCatchPhrase.text = retrofitExampleModel.companyCatchPhrase
         viewBinding.tvBS.text = retrofitExampleModel.companyBs
+        viewBinding.addFave.setBackgroundResource(R.drawable.favorite_selected_background)
+        viewBinding.addFave.isSelected = retrofitExampleModel.isSelected
 
-        viewBinding.addFave.setOnClickListener{
-            retrofitExampleListener.onFavImageClicked(retrofitExampleModel.id)
+
+        viewBinding.addFave.setOnClickListener {
+            viewBinding.addFave.isSelected = !it.isSelected
+            retrofitExampleListener.onFavImageClicked(
+                retrofitExampleModel.id,
+                viewBinding.addFave.isSelected
+            )
         }
 
-        viewBinding.delItem.setOnClickListener{
+        viewBinding.delItem.setOnClickListener {
             retrofitExampleListener.onDeleteImageClicked(retrofitExampleModel.id)
         }
 
     }
-
-
-
 
 
 }

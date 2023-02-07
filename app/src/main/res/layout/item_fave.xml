@@ -261,7 +261,8 @@
         app:layout_constraintEnd_toStartOf="@+id/tvLat"
         app:layout_constraintStart_toEndOf="@+id/tvStreet"
         app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
-        app:srcCompat="@drawable/del_fave" />
+        android:background="@drawable/favorite_selected_background"
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

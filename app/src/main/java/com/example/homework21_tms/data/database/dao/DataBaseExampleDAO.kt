@@ -39,6 +39,14 @@ interface DataBaseExampleDAO {
     @Query("DELETE FROM faveEntity WHERE idElem =:searchId")
     fun deleteItemFromFaveEntity(searchId: Int)
 
+    @Query("UPDATE dataBaseExampleEntity SET isSelected =:newIsSelected WHERE idElem =:idElem")
+    fun updateStatusSelectedInItem(idElem: Int, newIsSelected: Boolean)
+
+
+
+
+
+
     // funs for workManager
     @Insert
     fun insertStringWorkManagerEntity(workManagerEntity: WorkManagerEntity)

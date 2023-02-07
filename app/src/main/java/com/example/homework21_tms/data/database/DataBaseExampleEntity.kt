@@ -41,5 +41,7 @@ data class DataBaseExampleEntity(
     @ColumnInfo("catchPhrase")
     val catchPhrase: String,
     @ColumnInfo("bs")
-    val bs: String
+    val bs: String,
+    @ColumnInfo("isSelected")
+    val isSelected: Boolean
 )
