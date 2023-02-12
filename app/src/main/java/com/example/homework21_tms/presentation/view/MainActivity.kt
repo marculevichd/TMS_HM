@@ -1,28 +1,18 @@
 package com.example.homework21_tms.presentation.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.example.homework21_tms.App
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.ActivityMainBinding
-import com.example.homework21_tms.presentation.view.auth.LoginFragment
-import com.example.homework21_tms.presentation.view.auth.OnBoardingFragment
-import com.example.homework21_tms.presentation.view.home.ItemsFragment
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
@@ -38,6 +28,9 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
+
+        (applicationContext as App).provideAppComponent().inject(this)
 
         mainPresenter.setView(this)
 

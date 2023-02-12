@@ -12,12 +12,9 @@ import com.example.homework21_tms.presentation.view.home.ItemPresenter
 import com.example.homework21_tms.presentation.view.home.RetrofitExamplePresenter
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 
 @Module
-@InstallIn(SingletonComponent::class)
 class PresentationModule {
     @Provides
     fun provideMainPresenter(authInteractor: AuthInteractor): MainPresenter {

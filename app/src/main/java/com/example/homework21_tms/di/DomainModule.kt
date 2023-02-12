@@ -8,12 +8,9 @@ import com.example.homework21_tms.domain.home.RetrofitExampleInteractor
 import com.example.homework21_tms.domain.home.RetrofitExampleRepository
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 
 @Module
-@InstallIn(SingletonComponent::class)
 class DomainModule {
 
     @Provides

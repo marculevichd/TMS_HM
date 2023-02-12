@@ -1,21 +1,18 @@
 package com.example.homework21_tms.presentation.view.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import com.example.homework21_tms.App
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentLoginBinding
-import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import com.example.homework21_tms.utils.NavHelper.navigate
 import com.example.homework21_tms.utils.NavHelper.replaceGraph
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class LoginFragment : Fragment(), LoginView {
 
 
@@ -37,7 +34,7 @@ class LoginFragment : Fragment(), LoginView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
         loginPresenter.setView(this)
 
 

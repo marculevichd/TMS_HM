@@ -2,7 +2,6 @@ package com.example.homework21_tms.data.database.worker
 
 import android.content.Context
 import android.util.Log
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.homework21_tms.data.AuthRepositoryImpl
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 
-@HiltWorker
 class PeriodWorker @AssistedInject constructor(
     @Assisted val context: Context,
     @Assisted parameters: WorkerParameters,

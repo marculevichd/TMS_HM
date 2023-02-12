@@ -1,20 +1,18 @@
 package com.example.homework21_tms.presentation.view.home
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homework21_tms.App
 import com.example.homework21_tms.databinding.FragmentRetrofitExampleBinding
 import com.example.homework21_tms.domain.model.RetrofitExampleModel
 import com.example.homework21_tms.presentation.adapter.RetrofitExampleAdapter
 import com.example.homework21_tms.presentation.adapter.listener.RetrofitExampleListener
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class RetrofitExampleFragment : Fragment(), RetrofitExampleView, RetrofitExampleListener {
 
     private var _viewBinding: FragmentRetrofitExampleBinding? = null
@@ -36,6 +34,7 @@ class RetrofitExampleFragment : Fragment(), RetrofitExampleView, RetrofitExample
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         retrofitExamplePresenter.setView(this)
 

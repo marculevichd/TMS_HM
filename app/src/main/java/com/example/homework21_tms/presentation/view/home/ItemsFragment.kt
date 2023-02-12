@@ -1,22 +1,21 @@
 package com.example.homework21_tms.presentation.view.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.homework21_tms.App
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentItemsBinding
 import com.example.homework21_tms.domain.model.ItemsModel
 import com.example.homework21_tms.presentation.adapter.ItemsAdapter
 import com.example.homework21_tms.presentation.adapter.listener.ItemListener
 import com.example.homework21_tms.utils.NavHelper.navigateWithBundle
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemListener, ItemsView {
 
     private var _viewBinding: FragmentItemsBinding? = null
@@ -39,6 +38,7 @@ class ItemsFragment : Fragment(), ItemListener, ItemsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         itemsPresenter.setView(this)
 

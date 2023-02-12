@@ -1,19 +1,17 @@
 package com.example.homework21_tms.presentation.view.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.homework21_tms.App
 import com.example.homework21_tms.R
 import com.example.homework21_tms.databinding.FragmentOnBoardingBinding
 import com.example.homework21_tms.domain.model.UserModel
-import com.example.homework21_tms.presentation.view.home.ItemsFragment
 import com.example.homework21_tms.utils.NavHelper.replaceGraph
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class OnBoardingFragment : Fragment(), OnBoardingView {
 
 
@@ -36,6 +34,7 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         onBoardingPresenter.setView(this)
 
